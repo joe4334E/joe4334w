@@ -13,7 +13,7 @@ const BlogPostWithSearch = ({ sortedPosts }: { sortedPosts: any }) => {
                     aria-label='Search articles'
                     type='text'
                     onChange={(e) => setSearchValue(e.target.value)}
-                    placeholder='Search articles'
+                    placeholder='Buscar articulos'
                     className='block w-full px-4 py-2 text-gray-900 bg-white border border-gray-200 rounded-md dark:border-gray-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:text-gray-100'
                 />
                 <svg
