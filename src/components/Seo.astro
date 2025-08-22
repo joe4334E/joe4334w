@@ -7,15 +7,15 @@ interface Props {
     ogImage?: string;
 }
 const {
-    title,
+    title = 'joe4334W',
     description = 'I post My Hackthebox writeups and other InfoSec findings here.',
     ogImage = 'https://0xdedinfosec.vercel.app/og.png',
 } = Astro.props as Props;
-const twitterHandle = '@0xdedinfosec';
+const twitterHandle = '@joe4334W';
 ---
 
 <SEO
-    title={title ? `${title} | 0xDedinfosec` : '0xDedinfosec Blogs'}
+    title={title ? `${title} | web developer` : 'Joe4334W Blogs'}
     description={description}
     openGraph={{
         basic: {
