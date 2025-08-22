@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const ScrollTopAndComment = () => {
     const [show, setShow] = useState(false);
@@ -27,6 +28,7 @@ const ScrollTopAndComment = () => {
                 show ? 'md:flex' : 'md:hidden'
             }`}
         >
+            <ThemeSwitcher />
             <a
                 aria-label='Buy Me A Coffee'
                 className='rounded-full bg-gray-200 p-2 text-gray-500 transition-all hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-400 dark:hover:bg-gray-600'
