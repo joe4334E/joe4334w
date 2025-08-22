@@ -1,0 +1,139 @@
+---
+title: "HTML, CSS y JS Intro"
+slug: html-intro-001
+description: Curso introductorio de HTML, CSS y JavaScript con capítulos organizados en un glosario para facilitar el estudio.
+date: 2025-10-04
+image: hackthebox-driver-writeup.webp
+---
+
+import FixTheImageURL from '../../../components/mdxComponents/FixTheImageURL.astro';
+import { components as MDXComponents } from '../../../components/mdxComponents';
+import Coder from '../../../components/mdxComponents/Coder.astro';
+export const components = MDXComponents;
+
+## 01 - Introducción
+
+¡Ahhh, shifuu, ya te pillé! 😅
+No podemos andar poniendo las mismas viñetas repetidas, eso se ve **muerto y robotizado**, y sí, cualquiera que lea va a notar que es generada automáticamente. Hay que darle **vida, ritmo y variación**: mezcla de párrafos, listas, ejemplos, notas divertidas y mini ejercicios que hagan sentir que **una persona de carne y hueso escribió el blog**.
+
+Te propongo esta estructura **mucho más natural, fluida y divertida**, manteniendo jerarquía y detalle:
+
+---
+
+# Capítulo 1: Introducción a HTML
+
+## 00:00 - Introducción
+
+¿Alguna vez te preguntaste cómo funciona una página web? 🤔
+HTML es como los **ladrillos** de una casa: sin ellos, no hay estructura. Con HTML defines **qué aparece**, cómo se organiza y qué elementos forman tu página.
+
+### Historia breve
+
+Desde 1991 hasta hoy, HTML ha evolucionado de simples etiquetas de texto a **herramientas que permiten multimedia, animaciones y aplicaciones completas**.
+
+> **Ingresar figura: “línea de tiempo de HTML”**
+
+### ¿Por qué aprender HTML?
+
+* Es el primer paso para crear páginas web.
+* Sin HTML, no hay CSS ni JavaScript que funcionen.
+* Te permite **entender la web desde la base**, no solo copiar y pegar código.
+
+---
+
+## 02:35 - Entendiendo la WEB
+
+La web es un **ecosistema vivo**: navegadores, servidores, protocolos, y tú como creador interactuando con ellos.
+
+### Cómo funciona
+
+Imagina que visitas un sitio: tu navegador **pregunta** al servidor y este responde con los archivos HTML, CSS y JS.
+El navegador interpreta y… ¡voilà! Tu página aparece.
+
+### Tipos de páginas
+
+* **Estática**: No cambia a menos que tú lo hagas (perfecta para blogs simples).
+* **Dinámica**: Cambia según quien la visite, gracias a programación en el servidor.
+
+> **Ingresar figura: “esquema cliente-servidor”**
+
+---
+
+## 13:38 - Entendiendo HTML y CSS
+
+Ahora sí, vamos a meter mano al código. Pero tranqui, que **no vamos a morir en etiquetas**.
+
+### Estructura básica de un documento HTML
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Primera Página</title>
+</head>
+<body>
+    <h1>¡Hola Mundo!</h1>
+    <p>Bienvenido a tu primer archivo HTML.</p>
+</body>
+</html>
+```
+
+Algunos tips para sobrevivir:
+
+* `<head>`: lo que **no ves** pero es importantísimo.
+* `<body>`: donde todo el contenido “vivo” aparece.
+* No olvides cerrar **todas las etiquetas**. Nada de dejarlas abiertas 😱.
+
+### CSS al rescate
+
+CSS es **la magia visual**. Cambia colores, fuentes, tamaños… Incluso puedes centrar tu texto y hacer que tu página se vea profesional sin Photoshop.
+
+```html
+<style>
+    body { font-family: Arial, sans-serif; background-color: #f9f9f9; }
+    h1 { color: #1a73e8; text-align:center; }
+    p { font-size:16px; color:#333; }
+</style>
+```
+
+> **Ingresar figura: “pantalla mostrando HTML+CSS”**
+
+---
+
+## 26:10 - Editor de código
+
+No vas a escribir HTML en el bloc de notas, shifuu. 😅 Necesitas **herramientas que te faciliten la vida**.
+
+### Recomendaciones
+
+* **Visual Studio Code**: Gratis, con extensiones y Live Server.
+* Sublime Text: Ligero y rápido, ideal si tu PC es lenta.
+* Atom: Personalizable y con comunidad enorme de plugins.
+
+### Mini guía VS Code
+
+1. Instala VS Code.
+2. Añade extensión **Live Server**.
+3. Crea tu carpeta de proyecto y un archivo `index.html`.
+4. Haz clic en “Go Live” y verás tus cambios en tiempo real.
+
+> **Ingresar figura: “VS Code + Live Server en acción”**
+
+### Tu primer proyecto
+
+* Archivo: `index.html`
+* Contenido: tu nombre, una breve presentación y un color de fondo divertido.
+* Guarda, abre en el navegador y ¡celebra tu primera página web! 🎉
+
+---
+
+💡 **Mini reto para el lector**
+
+* Cambia el color de fondo.
+* Añade un párrafo contando tu comida favorita.
+* Crea un título `<h2>` con tu hobby.
+ 
+ Bueno a Codear un poco
+
+ <Coder />
