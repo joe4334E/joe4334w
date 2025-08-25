@@ -1,0 +1,485 @@
+---
+title: "HTML: 003 - CSS Basico"
+slug: html-003
+description: Conceptos iniciales de CSS => selectores básicos, propiedades de texto, tipografías externas, modelo de caja, colores, unidades, fondos y un ejercicio práctico.
+date: 2025-10-04
+image: hackthebox-driver-writeup.webp
+---
+
+import FixTheImageURL from '../../../components/mdxComponents/FixTheImageURL.astro';
+import { components as MDXComponents } from '../../../components/mdxComponents';
+import Figure from '../../../components/mdxComponents/Figure.astro';
+export const components = MDXComponents;
+
+
+---
+
+## Introducción a CSS 🎨
+CSS (Cascading Style Sheets) es el lenguaje que utilizamos para describir la presentación de un documento HTML. Con CSS, podemos controlar el diseño, los colores, las fuentes y muchos otros aspectos visuales de una página web.
+
+```css
+body {
+  background-color: #f0f0f0;
+  color: #333;
+  font-family: Arial, sans-serif;
+}
+h1 {
+  color: #007acc;
+}
+``` 
+En este ejemplo, estamos aplicando estilos al cuerpo de la página y a los encabezados `<h1>`.
+
+La sintaxis basica de CSS se compone de selectores y declaraciones. Un selector apunta al elemento HTML que queremos estilizar, y las declaraciones dentro de llaves `{}` definen las propiedades y valores que se aplicarán a ese elemento.
+
+```css
+selector {
+  propiedad: valor;
+  propiedad2: valor2;
+}
+```
+
+---
+## Selectores (Básico) 🕵️‍♂️
+Los selectores en CSS nos permiten seleccionar los elementos HTML a los que queremos aplicar estilos. Aquí tienes algunos de los selectores más comunes:
+
+El ejemplo para el HTMl en este caso seria : 
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0
+    <title>Mi Primera Página con CSS</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 class="titulo" id="principal">Bienvenido a mi página web</h1>
+    <p>Este es un párrafo de ejemplo.</p>
+    <div>
+        <p>Otro párrafo dentro de un div.</p>
+    </div>
+    <ul>
+        <li>Elemento 1</li>
+        <li>Elemento 2</li>
+        <li>Elemento 3</li>
+    </ul>
+    <a href="#" target="_blank">Enlace de ejemplo</a>
+</body>
+</html>
+```
+
+### Uso de los selectores en CSS:
+
+- **Selector de tipo**: selecciona todos los elementos de un tipo específico.
+  ```css
+  p {
+    color: blue;
+  }
+  ```
+- **Selector de clase**: selecciona todos los elementos con una clase específica.
+  ```css
+  .mi-clase {
+    font-size: 20px;
+  }
+  ```
+- **Selector de ID**: selecciona un elemento con un ID específico.
+  ```css
+  #mi-id {
+    margin: 10px;
+  }
+  ```
+- **Selector universal**: selecciona todos los elementos.
+  ```css
+  * {
+    box-sizing: border-box;
+  }
+  ```
+- **Selector de atributo**: selecciona elementos con un atributo específico.
+  ```css
+  a[target="_blank"] {
+    color: red;
+  }
+  ```
+- **Selector descendiente**: selecciona elementos que son descendientes de otro elemento.
+  ```css
+  div p {
+    line-height: 1.5;
+  }
+  ```
+- **Selector hijo**: selecciona elementos que son hijos directos de otro elemento.
+  ```css
+  ul > li {
+    list-style-type: square;
+  }
+  ```       
+- **Selector de grupo**: selecciona varios elementos a la vez.
+  ```css
+  h1, h2, h3 {
+    font-family: 'Helvetica Neue', sans-serif;
+  }
+  ```
+- **Selector de pseudo-clase**: selecciona elementos en un estado específico.
+  ```css
+  a:hover {
+    text-decoration: underline;
+  }
+  ```
+- **Selector de pseudo-elemento**: selecciona y estiliza una parte específica de un elemento.
+  ```css
+  p::first-letter {
+    font-size: 2em;
+    color: red;
+  }
+  ```
+---
+## Propiedades de texto y fuente ✍️
+CSS ofrece una variedad de propiedades para controlar la apariencia del texto y las fuentes en una página web. Algunas de las propiedades más comunes incluyen:
+
+- **`font-family`**: especifica la fuente a utilizar.
+  ```css
+  body {
+    font-family: 'Arial', sans-serif;
+  }
+  ```
+- **`font-size`**: establece el tamaño de la fuente.
+  ```css
+  h1 {
+    font-size: 2em;
+  }
+  ```
+- **`font-weight`**: define el grosor de la fuente.
+  ```css
+  strong {
+    font-weight: bold;
+  }
+  ```
+- **`font-style`**: aplica estilo a la fuente (normal, cursiva, etc.).
+  ```css
+  em {
+    font-style: italic;
+  }
+  ```
+- **`line-height`**: controla la altura de la línea.
+  ```css
+  p {
+    line-height: 1.5;
+  }
+  ```
+- **`text-align`**: establece la alineación del texto.
+  ```css
+  h2 {
+    text-align: center;
+  }
+  ```
+- **`text-decoration`**: añade decoraciones al texto (subrayado, tachado, etc.).
+  ```css
+  a {
+    text-decoration: none;
+  }
+  ```
+- **`text-transform`**: controla la capitalización del texto.
+  ```css
+  h1 {
+    text-transform: uppercase;
+  }
+  ```
+- **`color`**: define el color del texto.
+  ```css
+    p {
+    color: #333;
+  }
+    ```
+- **`letter-spacing`**: ajusta el espacio entre letras.
+    ```css
+    h1 {
+    letter-spacing: 2px;
+  }
+    ```
+- **`word-spacing`**: ajusta el espacio entre palabras.
+    ```css
+    p {
+    word-spacing: 4px;
+  }
+    ```
+- **`text-shadow`**: añade sombra al texto.
+    ```css
+    h2 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+    ```Estas propiedades te permiten personalizar y mejorar la legibilidad del texto en tu sitio web.
+---
+## Tipografías externas 🆕
+Puedes utilizar fuentes externas en tu sitio web mediante servicios como Google Fonts. Aquí te mostramos cómo hacerlo:
+1. Ve a [Google Fonts](https://fonts.google.com/) y selecciona la fuente que deseas utilizar.
+2. Copia el enlace proporcionado para incluirlo en la sección `<head>` de tu documento HTML.
+
+<Figure title="Google Fonts" src="https://wordtohtml.net/content/wp-content/uploads/Google-Fonts-link.jpg" alt="Google Fonts" caption="Figura 2: Google Fonts" />
+   ```html
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+   ```
+3. Luego, en tu archivo CSS, puedes aplicar la fuente a los elementos deseados.
+   ```css
+   body {
+    font-family: 'Roboto', sans-serif;
+   }
+   ```
+---
+## Modelo de caja (box model) 📦
+
+<Figure title="Modelo de caja en CSS" src="https://www.ondrejkonecny.com/_astro/box-model-detail.SGX-EX3g_Zft9gK.svg" alt="Modelo de caja en CSS" caption="Figura 3: Modelo de caja en CSS" />
+
+El modelo de caja es un concepto fundamental en CSS que describe cómo se estructuran los elementos en una página web. Cada elemento se representa como una caja rectangular que consta de cuatro áreas principales:
+1. **Contenido**: el área donde se muestra el contenido (texto, imágenes, etc.).
+2. **Relleno (padding)**: el espacio entre el contenido y el borde de la caja.
+3. **Borde (border)**: el contorno que rodea el relleno.
+4. **Margen (margin)**: el espacio entre el borde de la caja y otros elementos.
+```css
+div {
+  width: 200px; /* ancho del contenido */
+  padding: 20px; /* espacio interno */
+  border: 5px solid black; /* borde */
+  margin: 10px; /* espacio externo */
+}
+```
+En este ejemplo, el ancho total de la caja será la suma del ancho del contenido, el relleno, el borde y el margen.
+---## Relleno y Margen (margin y padding) 📏
+- **`padding`**: controla el espacio interno entre el contenido y el borde de un elemento.
+  ```css
+  div {
+    padding: 20px; /* espacio interno */
+  }
+  ```
+- **`margin`**: controla el espacio externo entre el borde de un elemento y otros elementos.
+  ```css
+  div {
+    margin: 10px; /* espacio externo */
+  }
+  ```
+- Puedes especificar valores individuales para cada lado:                                                   
+    ```css
+    div {
+        padding: 10px 20px 15px 5px; /* top right bottom left */
+        margin: 5px 10px; /* top/bottom right/left */
+    }
+    ```
+---
+## Bordes 🖼️
+Los bordes son líneas que rodean los elementos y pueden personalizarse de varias maneras:
+- **`border-width`**: define el grosor del borde.
+    ```css
+    div {
+      border-width: 2px;
+    }
+    ```
+- **`border-style`**: establece el estilo del borde (solid, dashed, dotted  , etc.).
+    ```css
+    div {
+      border-style: solid;
+    }
+    ```
+- **`border-color`**: especifica el color del borde.
+    ```css
+    div {
+      border-color: #000;
+    }
+    ```
+- **`border-radius`**: redondea las esquinas del borde.
+    ```css
+    div {
+      border-radius: 10px;      
+    }
+    ```
+- Puedes combinar estas propiedades en una sola declaración:
+    ```css
+    div {
+        border: 2px solid #000;
+        border-radius: 10px;
+    }
+    ```
+---
+## Tamaño de caja (box sizing) 📐
+```css
+div {
+  box-sizing: border-box;
+}
+```
+La propiedad `box-sizing` controla cómo se calculan el ancho y alto de un elemento. Con `border-box`, el padding y el borde se incluyen en las dimensiones totales del elemento, lo que facilita el diseño y evita sorpresas al agregar relleno o bordes.
+
+---
+## Colores 🌈
+CSS permite especificar colores de varias maneras:
+- **Nombres de colores**: como `red`, `blue`, `green`, etc.
+  ```css
+  p {
+    color: red;
+  }
+  ```
+- **Valores hexadecimales**: como `#ff0000` para rojo.
+  ```css
+  p {
+    color: #ff0000;
+  }
+  ```
+- **Valores RGB**: como `rgb(255, 0, 0)` para rojo.
+  ```css
+  p {
+    color: rgb(255, 0, 0);
+  }
+  ```
+- **Valores RGBA**: como `rgba(255, 0, 0, 0.5)` para rojo con transparencia.
+  ```css
+  p {
+    color: rgba(255, 0, 0, 0.5);
+  }
+  ```   
+- **Valores HSL**: como `hsl(0, 100%, 50%)` para rojo.
+  ```css
+    p {
+      color: hsl(0, 100%, 50%);
+    }
+    ```
+- **Valores HSLA**: como `hsla(0, 100%, 50%, 0.5)` para rojo con transparencia.
+    ```css    
+    p {
+      color: hsla(0, 100%, 50%, 0.5);
+    }
+    ```
+## Unidades 📏
+
+- **Pixeles (px)**: unidad fija, ideal para tamaños precisos.
+```css
+p {
+  font-size: 16px; /* tamaño de fuente en píxeles */
+}
+```
+- **Porcentaje (%)**: relativo al tamaño del elemento padre.
+```css
+div {
+  width: 50%; /* ancho del 50% del contenedor padre */
+}
+```
+- **Em (em)**: relativo al tamaño de la fuente del elemento padre.
+```css
+p {
+  font-size: 1.5em; /* 1.5 veces el tamaño de la fuente del padre */
+}
+```
+- **Rem (rem)**: relativo al tamaño de la fuente raíz (generalmente el `<html>`).
+```css
+p {
+  font-size: 1.5rem; /* 1.5 veces el tamaño de la fuente raíz */
+}
+```
+- **Viewport Width (vw)**: relativo al ancho de la ventana del navegador (1vw = 1% del ancho).
+```css
+div {
+  width: 50vw; /* ancho del 50% del ancho de la ventana */
+}
+```
+- **Viewport Height (vh)**: relativo al alto de la ventana del navegador (1vh = 1% del alto).
+```css
+div {
+  height: 50vh; /* alto del 50% del alto de la ventana */
+}
+```
+centimetros (cm), milímetros (mm), pulgadas (in): unidades físicas, menos comunes en web.
+```css
+div {
+  width: 10cm; /* ancho de 10 centímetros */
+}
+```
+- **Puntos (pt)** y **Picas (pc)**: unidades tipográficas, también menos comunes en web.
+```css
+p {
+  font-size: 12pt; /* tamaño de fuente en puntos */
+}
+``` 
+
+Estas unidades te permiten diseñar de manera flexible y adaptativa, asegurando que tu sitio web se vea bien en diferentes dispositivos y tamaños de pantalla.
+- **`calc()`**: permite realizar cálculos para definir tamaños.
+```css
+div {
+  width: calc(100% - 20px);
+}
+```
+- **`min-width`, `max-width`, `min-height`, `max-height`**: establecen límites mínimos y máximos para el tamaño de los elementos.
+```css
+div {
+  min-width: 200px;
+  max-width: 600px;
+}
+```
+
+- clamp(): limita un valor dentro de un rango definido por un valor mínimo, un valor preferido y un valor máximo.
+```css
+div {
+  font-size: clamp(1rem, 2.5vw, 2rem);
+}
+```
+Estas unidades de medida son fundamentales para crear diseños responsivos y adaptativos.
+
+
+---
+## Fondos, Gradientes y Sombras 🌅
+- **`background-color`**: establece el color de fondo de un elemento.
+    ```css
+    div {
+      background-color: #f0f0f0;
+    }
+    ```
+- **`background-image`**: aplica una imagen de fondo.
+    ```css
+    div {
+        background-image: url('fondo.jpg');
+        background-size: cover; /* ajusta la imagen al tamaño del contenedor */
+        background-position: center; /* centra la imagen */
+    }
+    ```
+- **`background-repeat`**: controla si la imagen de fondo se repite.
+    ```css
+    div {       
+      background-repeat: no-repeat;
+    }
+    ```
+- **`background-size`**: ajusta el tamaño de la imagen de fondo.
+    ```css
+    div {       
+      background-size: contain; /* ajusta la imagen para que quepa dentro del contenedor */
+    }
+    ```
+- **`background-position`**: define la posición de la imagen de fondo.
+    ```css
+    div {       
+      background-position: top right; /* posiciona la imagen en la esquina superior derecha */
+    }
+    ```
+- **`box-shadow`**: añade sombra a un elemento.
+    ```css
+    div {       
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+    ```
+- **`text-shadow`**: añade sombra al texto.
+    ```css
+    h2 {       
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    ``` 
+- **Gradientes**: crea transiciones suaves entre colores.
+    ```css
+    div {       
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+    }
+    ```
+---
+## Ejercicio práctico 💻
+Crea una página web sencilla que incluya los siguientes elementos:
+1. Un encabezado `<h1>` con un color de fondo y una fuente personalizada.
+2. Un párrafo `<p>` con un tamaño de fuente de 18px, color de texto gris oscuro y un margen de 20px.
+3. Una lista desordenada `<ul>` con al menos tres elementos `<li>`, cada uno con un borde y un relleno.
+4. Un enlace `<a>` que cambie de color al pasar el ratón por encima.
+5. Una imagen `<img>` con un borde redondeado y una sombra.
+6. Un formulario `<form>` con campos de entrada y un botón de envío, estilizados con CSS.
+7. Aplica un fondo degradado a toda la página y utiliza una unidad relativa para el tamaño de fuente del cuerpo (por ejemplo, `rem` o `%`).
+Utiliza las propiedades y selectores que hemos aprendido para darle estilo a tu página. ¡Diviértete experimentando con diferentes estilos y diseños!
+---

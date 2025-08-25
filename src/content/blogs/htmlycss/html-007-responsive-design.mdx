@@ -1,0 +1,136 @@
+---
+title: "HTML: 007 - Responsive Design"
+slug: html-007
+description: Curso introductorio de HTML, CSS y JavaScript con capítulos organizados en un glosario para facilitar el estudio.
+date: 2025-10-04
+image: hackthebox-driver-writeup.webp
+---
+
+import FixTheImageURL from '../../../components/mdxComponents/FixTheImageURL.astro';
+import { components as MDXComponents } from '../../../components/mdxComponents';
+export const components = MDXComponents;
+
+
+
+
+El diseño web adaptable (responsive design) es una técnica esencial en el desarrollo web moderno que permite que las páginas web se ajusten automáticamente a diferentes tamaños de pantalla y dispositivos. A continuación, se presentan algunas de las técnicas y conceptos clave para lograr un diseño web adaptable efectivo.
+### Bloques y Multimedia flexible
+El uso de unidades relativas como porcentajes (%) y unidades flexibles como `vw` (viewport width) y `vh` (viewport height) permite que los elementos de la página se ajusten dinámicamente al tamaño de la pantalla. Por ejemplo, en lugar de definir un ancho fijo en píxeles, se puede usar un porcentaje para que el ancho del elemento sea relativo al contenedor padre.
+
+```css
+.container {
+  width: 80%; /* El contenedor ocupará el 80% del ancho del padre */
+  margin: 0 auto; /* Centrar el contenedor */
+}
+img {
+  max-width: 100%; /* La imagen no excederá el ancho del contenedor */
+  height: auto; /* Mantener la proporción de la imagen */
+}
+```
+### Atributos SRCSET y SIZES
+Los atributos `srcset` y `sizes` en la etiqueta `<img>` permiten especificar diferentes versiones de una imagen para distintos tamaños de pantalla. Esto ayuda a optimizar la carga de imágenes y mejorar el rendimiento.
+```html
+<img src="imagen-pequena.jpg" alt="Descripción de la imagen"
+     srcset="imagen-grande.jpg 1024w,
+             imagen-mediana.jpg 640w,
+             imagen-pequena.jpg 320w"
+     sizes="(max-width: 1024px) 100vw,
+            (max-width: 640px) 50vw,
+            33vw">
+```
+### Picture, Source y Media
+La etiqueta `<picture>` junto con `<source>` permite definir múltiples fuentes de imagen para diferentes condiciones, como el tamaño de la pantalla o la resolución del dispositivo.
+```html
+<picture>
+  <source media="(min-width: 800px)" srcset="imagen-grande.jpg">
+  <source media="(min-width: 400px)" srcset="imagen-mediana.jpg">
+  <img src="imagen-pequena.jpg" alt="Descripción de la imagen">
+</picture>
+```
+### Media Queries
+Las media queries en CSS permiten aplicar estilos específicos según las características del dispositivo, como el ancho de la pantalla. Esto es fundamental para crear diseños adaptativos.
+```css
+@media (max-width: 600px) {
+  body {
+    background-color: lightblue; /* Cambia el color de fondo en pantallas pequeñas */
+  }
+  .container {
+    width: 100%; /* El contenedor ocupará todo el ancho en pantallas pequeñas */
+  }
+}
+```
+### Ejercicio "Holy Grail" con Flexbox
+El diseño "Holy Grail" es un patrón de diseño web que incluye un encabezado, un pie de página, una barra lateral izquierda, una barra lateral derecha y un contenido principal. Usando Flexbox, se puede lograr este diseño de manera sencilla y adaptable.
+```html
+<div class="container">
+  <header>Encabezado</header>
+  <div class="main-content">
+    <aside class="sidebar-left">Barra Lateral Izquierda</aside>
+    <section class="content">Contenido Principal</section>
+    <aside class="sidebar-right">Barra Lateral Derecha</aside>
+  </div>
+  <footer>Pie de Página</footer>
+</div>
+```
+```css
+.container {
+  display: flex;
+  flex-direction: column;               
+    min-height: 100vh; /* Altura mínima de la pantalla */
+}
+header, footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+}   
+.main-content {
+  display: flex;
+  flex: 1; /* Ocupa el espacio restante */
+}
+.sidebar-left, .sidebar-right {
+    width: 200px; /* Ancho fijo para las barras laterales */
+    background-color: #e1e1e1;
+    padding: 10px;
+}
+.content {
+    flex: 1; /* Ocupa el espacio restante */
+    background-color: #d1d1d1;
+    padding: 10px;
+
+}
+```
+### Mobile First
+El enfoque "Mobile First" implica diseñar primero para dispositivos móviles y luego escalar hacia pant
+allas más grandes. Esto asegura que el diseño sea óptimo para los usuarios móviles, que son cada vez más numerosos.
+```css
+/* Estilos para dispositivos móviles */
+body {
+  font-size: 16px;
+}   
+@media (min-width: 600px) {
+  body {
+    font-size: 18px; /* Aumentar el tamaño de fuente en pantallas más grandes */
+  }
+}
+```
+### Feature Queries
+Las feature queries permiten aplicar estilos basados en la disponibilidad de características específicas del navegador, lo que es útil para aprovechar nuevas tecnologías sin afectar a los navegadores más antiguos.
+```css
+@supports (display: grid) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+```
+### Container Queries
+Las container queries son una característica emergente que permite aplicar estilos basados en el tamaño de un contenedor en lugar del viewport. Esto es útil para crear componentes que se adapten a su entorno.
+```css
+@container (min-width: 400px) {
+  .responsive-component {
+    background-color: lightgreen; /* Cambia el color de fondo si el contenedor es al menos 400px de ancho */
+  }
+}   
+```
+Estas técnicas y conceptos son fundamentales para crear sitios web que se adapten a una variedad de dispositivos y tamaños de pantalla, mejorando la experiencia del usuario y optimizando el rendimiento. Implementar un
+diseño web adaptable no solo es una buena práctica, sino que también es esencial en un mundo donde los usuarios acceden a la web desde una amplia gama de dispositivos. A medida que avanzas en tu aprendizaje de HTML, CSS y JavaScript, considera cómo estas técnicas pueden mejorar tus proyectos y la experiencia del usuario final.

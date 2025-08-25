@@ -1,0 +1,288 @@
+---
+title: "HTML: 008 - CSS Grid"
+slug: html-008
+description: Curso introductorio de HTML, CSS y JavaScript con capítulos organizados en un glosario para facilitar el estudio.
+date: 2025-10-04
+image: hackthebox-driver-writeup.webp
+---
+
+import FixTheImageURL from '../../../components/mdxComponents/FixTheImageURL.astro';
+import { components as MDXComponents } from '../../../components/mdxComponents';
+export const components = MDXComponents;
+
+
+
+---
+
+<FixTheImageURL
+  src="https://raw.githubusercontent.com/edteambr/edteam-content/main/src/content/blogs/html/html-008-css-grid.mdx"
+  alt="CSS Grid"
+    width="100%"
+    height="auto"
+    class="rounded-lg shadow-lg"
+    loading="lazy"
+    style="max-width: 100%; height: auto;"
+/>
+
+## Introducción a Grid
+El CSS Grid Layout es un sistema de diseño bidimensional que permite crear diseños complejos y responsivos de manera sencilla. A diferencia de otros modelos de diseño, como Flexbox, que se centra en el diseño unidimensional (ya sea en filas o columnas), Grid permite trabajar con ambos ejes simultáneamente.
+Grid se basa en la creación de una cuadrícula (grid) que divide el espacio disponible en filas y columnas, permitiendo colocar elementos en posiciones específicas dentro de esa cuadrícula. Esto facilita la creación de diseños más estructurados y flexibles, adaptándose a diferentes tamaños de pantalla y resoluciones.
+## Creando un Grid
+Para crear un grid en CSS, se utiliza la propiedad `display: grid;` en el contenedor del grid. A continuación, se definen las filas y columnas utilizando las propiedades `grid-template-rows` y `grid-template-columns`. Aquí tienes un ejemplo básico:
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+  grid-template-rows: repeat(2, auto); /* Dos filas, altura automática */
+}
+```
+En este ejemplo, el contenedor `.container` se convierte en un grid con tres columnas de igual tamaño y dos filas con altura automática. La unidad `fr` (fracción) se utiliza para distribuir el espacio disponible entre las columnas de manera proporcional. La unidad `auto` permite que laaltura de las filas se ajuste automáticamente al contenido.
+## Unidades "auto" y "fr"
+Las unidades `auto` y `fr` son fundamentales en CSS Grid. La unidad `fr` representa una fracción del espacio disponible en el contenedor del grid. Por ejemplo, si tienes tres columnas definidas como `1fr`, cada columna ocupará un tercio del espacio disponible.
+La unidad `auto`, por otro lado, permite que el tamaño de una fila o columna se ajuste automáticamente al contenido. Esto es útil cuando no se conoce de antemano el tamaño del contenido y se desea que el grid se adapte a él.
+```css
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Primera columna ocupa 1/3 del espacio, segunda columna ocupa 2/3 */
+  grid-template-rows: auto; /* Fila con altura automática */
+}
+```
+En este ejemplo, la primera columna ocupará un tercio del espacio disponible y la segunda columna ocupará dos tercios. La fila tendrá una altura automática basada en el contenido de las celdas.
+## Repeat y Minmax
+Las funciones `repeat()` y `minmax()` son herramientas poderosas en CSS Grid que permiten definir patrones de repetición y establecer límites para el tamaño de las filas y columnas.
+La función `repeat()` se utiliza para repetir un patrón de filas o columnas. Por ejemplo, `repeat(3, 1fr)` crea tres columnas de igual tamaño. Esto es especialmente útil cuando se tienen múltiples columnas o filas con el mismo tamaño, ya que evita la repetición manual del código.
+La función `minmax()` permite establecer un tamaño mínimo y máximo para una fila o columna. Por ejemplo, `minmax(100px, 1fr)` define una columna que tendrá un tamaño mínimo de 100 píxeles y un tamaño máximo de una fracción del espacio disponible. Esto es útil para crear diseños responsivos que se adapten a diferentes tamaños de pantalla.
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(100px, 1fr)); /* Tres columnas con un tamaño mínimo de 100px y máximo de 1fr */
+  grid-template-rows: repeat(2, auto); /* Dos filas con altura automática */
+}
+```
+En este ejemplo, el grid tendrá tres columnas que se adaptarán al espacio disponible, con un tamaño mínimo de 100 píxeles y un tamaño máximo de una fracción del espacio disponible.
+## Grid implícito y explícito
+En CSS Grid, se pueden distinguir dos tipos de grids: explícito e implícito.
+Un grid explícito se define mediante las propiedades `grid-template-rows` y `grid-template-columns`, donde se especifican las filas y columnas del grid de manera clara. Por ejemplo:
+``````css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+  grid-template-rows: repeat(2, auto); /* Dos filas con altura automática */
+}
+``````
+En este caso, el grid tiene un diseño explícito con tres columnas y dos filas definidas.
+Un grid implícito, por otro lado, se crea automáticamente cuando se colocan elementos en el grid sin haber definido previamente todas las filas o columnas. Si un elemento se coloca en una posición que no está definida en el grid explícito, CSS Grid creará automáticamente las filas o columnas necesarias para acomodar ese elemento.
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+  /* No se definen filas, por lo que se crea un grid implícito */
+}
+.item {
+  grid-column: 1; /* Coloca el elemento en la primera columna */
+  grid-row: 3; /* Coloca el elemento en la tercera fila, creando una fila implícita */
+}
+```
+En este ejemplo, el elemento `.item` se coloca en la tercera fila, que no estaba definida en el grid explícito. CSS Grid crea automáticamente esa fila implícita para acomodar el elemento.
+## Grid dinámico (y responsive)
+Un grid dinámico es aquel que se adapta automáticamente al tamaño del contenedor y al contenido de los elementos. Esto es especialmente útil para crear diseños responsivos que se ajusten a diferentes tamaños de pantalla.
+Para lograr un grid dinámico, se pueden utilizar unidades relativas como `fr`, `auto` y `minmax()`, así como propiedades como `grid-template-areas` para definir áreas específicas del grid.
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Crea columnas que se adaptan al espacio disponible, con un tamaño mínimo de 200px */
+  grid-template-rows: auto; /* Fila con altura automática */
+}
+.item {
+  grid-column: span 1; /* Cada elemento ocupa una columna */
+  grid-row: span 1; /* Cada elemento ocupa una fila */
+}
+```
+En este ejemplo, el grid se adapta automáticamente al espacio disponible, creando columnas que tienen un tamaño mínimo de 200 píxeles y un tamaño máximo de una fracción del espacio disponible. Esto permite que el grid se ajuste a diferentes tamaños de pantalla, creando un diseño responsivo.
+## Grid column y Grid row
+Las propiedades `grid-column` y `grid-row` se utilizan para controlar la ubicación de los elementos dentro del grid. Estas propiedades permiten especificar en qué columna y fila debe aparecer un elemento, así como cuántas columnas o filas debe abarcar.
+```css
+.item {
+  grid-column: 1 / 3; /* El elemento ocupa desde la columna 1 hasta la columna 3 */
+  grid-row: 2; /* El elemento ocupa la fila 2 */
+}
+```
+En este ejemplo, el elemento `.item` se coloca en la primera columna y abarca hasta la tercera columna, ocupando la fila 2. Esto permite un control preciso sobre la disposición de los elementos dentro del grid.
+También se pueden utilizar las propiedades `grid-column-start`, `grid-column-end`, `grid-row-start` y `grid-row-end` para definir el inicio y el final de las columnas y filas de un elemento.
+```css
+.item {
+  grid-column-start: 1; /* Comienza en la columna 1 */
+  grid-column-end: 3; /* Termina en la columna 3 */
+  grid-row-start: 2; /* Comienza en la fila 2 */
+  grid-row-end: 4; /* Termina en la fila 4 */
+}
+```
+En este caso, el elemento `.item` comienza en la columna 1 y termina en la columna 3, ocupando las filas 2 y 3. Esto permite una mayor flexibilidad en la disposición de los elementos dentro del grid.
+## Grid flow: Dense
+El flujo denso (dense flow) en CSS Grid se refiere a la forma en que los elementos se colocan en el grid cuando hay espacios vacíos. Por defecto, CSS Grid coloca los elementos en el grid de manera secuencial, llenando las filas y columnas de arriba hacia abajo y de izquierda a derecha. Sin embargo, cuando se utiliza el flujo denso, CSS Grid intenta llenar los espacios vacíos de manera más eficiente, moviendo los elementos hacia adelante en el grid para ocupar esos espacios.
+Para activar el flujo denso, se utiliza la propiedad `grid-auto-flow: dense;` en el contenedor del grid. Esto permite que los elementos se coloquen de manera más compacta, aprovechando los espacios vacíos que puedan existir.
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+  grid-template-rows: repeat(2, auto); /* Dos filas con altura automática */
+  grid-auto-flow: dense; /* Activa el flujo denso */
+}
+.item {
+  grid-column: span 2; /* El elemento ocupa dos columnas */
+  grid-row: span 1; /* El elemento ocupa una fila */
+}
+```
+En este ejemplo, el contenedor `.container` tiene un flujo denso activado. Si hay espacios vacíos en el grid, CSS Grid intentará colocar los elementos de manera que se aprovechen esos espacios, moviendo los elementos hacia adelante en el grid para llenar los huecos.
+Es importante tener en cuenta que el flujo denso puede afectar la disposición de los elementos, por lo que es recomendable utilizarlo con cuidado y probar diferentes configuraciones para lograr el diseño deseado.
+## Grid areas
+Las áreas de grid (grid areas) son una forma de definir secciones específicas dentro del grid, lo que permite una mayor flexibilidad y control sobre la disposición de los elementos. Las áreas de grid se definen utilizando la propiedad `grid-template-areas`, que permite asignar nombres a las áreas del grid y luego colocar los elementos en esas áreas utilizando la propiedad `grid-area`.
+```````css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+  grid-template-rows: repeat(2, auto); /* Dos filas con altura automática */
+  grid-template-areas:
+    "header header header"
+    "sidebar content content"
+    "footer footer footer"; /* Define las áreas del grid */
+}
+.item-header {
+  grid-area: header; /* Asigna el elemento a la área "header" */
+}
+.item-sidebar {
+  grid-area: sidebar; /* Asigna el elemento a la área "sidebar" */
+}
+.item-content {
+  grid-area: content; /* Asigna el elemento a la área "content" */
+}
+.item-footer {
+  grid-area: footer; /* Asigna el elemento a la área "footer" */
+}
+```````
+En este ejemplo, se define un grid con tres columnas y dos filas, y se asignan nombres a las áreas del grid: "header", "sidebar", "content" y "footer". Los elementos se colocan en esas áreas utilizando la propiedad `grid-area`, lo que permite una disposición más clara y legible del código.
+Las áreas de grid son especialmente útiles para crear diseños complejos y responsivos, ya que permiten definir secciones específicas del grid y colocar los elementos de manera más intuitiva. Además, se pueden utilizar combinaciones de áreas para crear diseños más elaborados y adaptativos.
+## Alineación con grid
+La alineación de los elementos dentro del grid se puede controlar utilizando las propiedades `align-items`, `justify-items`, `align-content` y `justify-content`. Estas propiedades permiten ajustar la posición de los elementos dentro del grid tanto en el eje vertical como en el eje horizontal.
+- `align-items`: Alinea los elementos dentro de cada celda del grid en el eje vertical.
+- `justify-items`: Alinea los elementos dentro de cada celda del grid en el eje horizontal. 
+- `align-content`: Alinea el contenido del grid en el eje vertical, afectando el espacio entre las filas.
+- `justify-content`: Alinea el contenido del grid en el eje horizontal, afectando el espacio entre las columnas.
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+  grid-template-rows: repeat(2, auto); /* Dos filas con altura automática */
+  align-items: center; /* Alinea los elementos verticalmente al centro */
+  justify-items: center; /* Alinea los elementos horizontalmente al centro */
+    align-content: space-between; /* Alinea el contenido verticalmente con espacio entre filas */
+    justify-content: space-between; /* Alinea el contenido horizontalmente con espacio entre columnas */
+}
+.item {
+  grid-column: span 1; /* Cada elemento ocupa una columna */
+  grid-row: span 1; /* Cada elemento ocupa una fila */
+}
+```
+En este ejemplo, los elementos dentro del grid se alinean al centro tanto vertical como horizontalmente, y el contenido del grid se distribuye con espacio entre las filas y columnas. Esto permite una disposición más equilibrada y estética de los elementos dentro del grid.
+Además, se pueden utilizar valores como `start`, `end`, `stretch` y `baseline` para personalizar aún más la alineación de los elementos dentro del grid, lo que proporciona una gran flexibilidad en el diseño.
+## Subgrid
+El subgrid es una característica avanzada de CSS Grid que permite que un grid anidado herede las propiedades de su grid padre. Esto significa que los elementos dentro de un subgrid pueden alinearse automáticamente con las filas y columnas del grid padre, lo que facilita la creación de diseños más complejos y coherentes.
+Para utilizar un subgrid, se define un grid dentro de otro grid y se utiliza la propiedad `grid-template-columns` y `grid-template-rows` en el subgrid para heredar las propiedades del grid padre. Aquí tienes un ejemplo:
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño */
+  grid-template-rows: repeat(2, auto); /* Dos filas con altura automática */
+}
+.subgrid {
+  display: grid;
+  grid-template-columns: subgrid; /* Hereda las columnas del grid padre */
+  grid-template-rows: subgrid; /* Hereda las filas del grid padre */
+}
+.item {
+  grid-column: span 1; /* Cada elemento ocupa una columna */
+  grid-row: span 1; /* Cada elemento ocupa una fila */
+}
+```
+En este ejemplo, el subgrid hereda las columnas y filas del grid padre, lo que permite que los elementos dentro del subgrid se alineen automáticamente con las filas y columnas del grid padre. Esto es especialmente útil cuando se desea mantener una coherencia en el diseño y la alineación de los elementos en diferentes niveles del grid.
+El subgrid es una característica poderosa que permite crear diseños más complejos y flexibles, pero es importante tener en cuenta que no todos los navegadores son compatibles con esta característica, por lo que es recomendable verificar la compatibilidad antes de utilizarla en proyectos deproducción.
+## Creando una página WEB
+Para crear una página web utilizando CSS Grid, se pueden seguir los siguientes pasos básicos:   \
+1. **Estructura HTML**: Define la estructura básica de la página utilizando etiquetas HTML. Por ejemplo, puedes tener un encabezado, una barra lateral, un contenido principal y un pie de página.
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Página Web</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="item-header">Encabezado</header>
+    <aside class="item-sidebar">Barra Lateral</aside>
+    <main class="item-content">Contenido Principal</main>
+    <footer class="item-footer">Pie de Página</footer>
+  </div>
+</body>
+</html>
+```
+2. **Estilos CSS**: Utiliza CSS Grid para definir el diseño de la página. Puedes utilizar las propiedades `grid-template-columns`, `grid-template-rows` y `grid-template-areas` para crear un grid que organice los elementos de la página.
+```css
+.container {
+  display: grid;
+  grid-template-columns: 1fr 3fr; /* Dos columnas, la segunda es más ancha */
+  grid-template-rows: auto auto; /* Dos filas, altura automática */
+  grid-template-areas:
+    "header header"
+    "sidebar content"
+    "footer footer"; /* Define las áreas del grid */
+}
+.item-header {
+  grid-area: header; /* Asigna el elemento a la área "header" */
+}
+.item-sidebar {
+  grid-area: sidebar; /* Asigna el elemento a la área "sidebar" */
+}
+.item-content {
+  grid-area: content; /* Asigna el elemento a la área "content" */
+}
+.item-footer {
+  grid-area: footer; /* Asigna el elemento a la área "footer" */
+}
+```
+3. **Ajustes de estilo**: Añade estilos adicionales para mejorar la apariencia de la página, como colores, fuentes y márgenes. También puedes utilizar propiedades de alineación para centrar el contenido y ajustar la disposición de los elementos dentro del grid.
+```css
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  gap: 10px; /* Espacio entre los elementos del grid */
+}
+.item-header, .item-sidebar, .item-content, .item-footer {
+  padding: 20px; /* Espaciado interno */
+  background-color: #f0f0f0; /* Color de fondo */
+  border: 1px solid #ccc; /* Borde */
+}
+.item-header {
+  background-color: #4CAF50; /* Color de fondo del encabezado */
+  color: white; /* Color del texto del encabezado */
+}
+.item-sidebar {
+  background-color: #2196F3; /* Color de fondo de la barra lateral */
+  color: white; /* Color del texto de la barra lateral */
+}
+.item-content {
+  background-color: #f9f9f9; /* Color de fondo del contenido principal */
+}
+.item-footer {
+  background-color: #333; /* Color de fondo del pie de página */
+  color: white; /* Color del texto del pie de página */
+}
+```
+4. **Pruebas y ajustes**: Visualiza la página en diferentes navegadores y dispositivos para asegurarte de que se vea bien y funcione correctamente. Realiza ajustes según sea necesario para mejorar la experiencia del usuario y la apariencia del diseño.
+5. **Publicación**: Una vez que estés satisfecho con el diseño y la funcionalidad de la página, puedes publicarla en un servidor web o utilizar servicios de alojamiento para que esté disponible en línea.
+Con estos pasos, puedes crear una página web básica utilizando CSS Grid, aprovechando sus capacidades para organizar y alinear los elementos de manera efectiva. CSS Grid es una herramienta poderosa que facilita la creación de diseños responsivos y flexibles, adaptándose a diferentes tamaños de pantalla y resoluciones.

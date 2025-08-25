@@ -1,0 +1,325 @@
+---
+title: "HTML: 004 - Html Avanzado"
+slug: html-004
+description: Curso introductorio de HTML, CSS y JavaScript con capítulos organizados en un glosario para facilitar el estudio.
+date: 2025-10-04
+image: hackthebox-driver-writeup.webp
+---
+
+
+import FixTheImageURL from '../../../components/mdxComponents/FixTheImageURL.astro';
+import Figure from '../../../components/mdxComponents/Figure.astro';
+import { components as MDXComponents } from '../../../components/mdxComponents';
+export const components = MDXComponents;
+
+
+## Metatags, Comentarios e Iconos 🏷️
+Los metatags son etiquetas HTML que proporcionan información sobre la página web, como su descripción, palabras clave y autor. Se colocan en la sección `<head>` del documento HTML. Aquí tienes algunos ejemplos:
+
+```html
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Descripción de la página">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Tu Nombre">
+</head>
+```
+
+Los comentarios en HTML se utilizan para dejar notas o explicaciones en el código. Se escriben así:
+
+```html
+<!-- Este es un comentario -->
+```
+
+Los iconos se pueden agregar a una página web utilizando fuentes de iconos como Font Awesome o Material Icons. Aquí tienes un ejemplo de cómo incluir Font Awesome:
+
+```html
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+```
+
+Luego, puedes usar los iconos en tu HTML:
+
+```html
+<i class="fas fa-camera"></i>
+```
+---
+## Textarea y Labels 📝
+```html
+<label for="mi-textarea">Comentarios:</label>
+<textarea id="mi-textarea" rows="4" cols="50"></textarea>
+```
+- `<label>`: etiqueta que define una etiqueta para un elemento de formulario.
+- `<textarea>`: etiqueta que define un área de texto multilínea.
+- `for`: atributo que asocia el label con el textarea mediante su id.
+- `rows` y `cols`: atributos que definen el tamaño del área de texto.
+---
+## Select, Datalist y Option 🎛️
+```html
+<label for="mi-select">Elige una opción:</label>
+<select id="mi-select">
+  <option value="opcion1">Opción 1</option>
+  <option value="opcion2">Opción 2</option>
+  <option value="opcion3">Opción 3</option>
+</select>
+```
+- `<select>`: etiqueta que define un menú desplegable.
+- `<option>`: etiqueta que define una opción dentro del menú desplegable.
+- `value`: atributo que define el valor que se enviará al servidor cuando se seleccione la opción.
+---
+
+## Fieldset y Legend 🗂️
+```html
+<fieldset>
+  <legend>Información Personal</legend>
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" name="nombre">
+  <br>
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email">
+</fieldset>
+```
+- `<fieldset>`: etiqueta que agrupa elementos relacionados en un formulario.
+- `<legend>`: etiqueta que proporciona un título para el grupo de elementos.
+---
+## Details y Summary 📂
+```html
+<details>
+  <summary>Más Información</summary>
+  <p>Aquí puedes agregar información adicional que se mostrará al expandir el resumen.</p>
+</details>
+```
+- `<details>`: etiqueta que crea un widget de control que el usuario puede abrir y cerrar.
+- `<summary>`: etiqueta que define un resumen visible para el elemento `<details>`.
+---
+## Enlaces (Avanzado) 🔗
+```html
+<a href="https://www.ejemplo.com" target="_blank" rel="noopener noreferrer">Enlace Externo</a>
+```
+- `<a>`: etiqueta que define un hipervínculo.
+- `href`: atributo que especifica la URL del recurso al que se enlaza.
+- `target`: atributo que especifica dónde se abrirá el enlace (por ejemplo, en una nueva pestaña).
+- `rel`: atributo que define la relación entre el documento actual y el recurso vinculado.
+---
+## Tablas 📊
+```html
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Edad</th>
+      <th>Ciudad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Ana</td>
+      <td>28</td>
+      <td>Madrid</td>
+    </tr>
+    <tr>
+      <td>Juan</td>
+      <td>34</td>
+      <td>Barcelona</td>
+    </tr>
+  </tbody>
+</table>
+```
+- `<table>`: etiqueta que define una tabla.
+- `<thead>`: etiqueta que agrupa el contenido del encabezado de la tabla.
+- `<tbody>`: etiqueta que agrupa el contenido del cuerpo de la tabla.
+- `<tr>`: etiqueta que define una fila en la tabla.
+- `<th>`: etiqueta que define una celda de encabezado en la tabla.
+- `<td>`: etiqueta que define una celda de datos en la tabla.
+---
+
+## Audio y Video 🎵🎥
+```html
+<audio controls>
+  <source src="audio.mp3" type="audio/mpeg">
+  Tu navegador no soporta el elemento de audio.
+</audio>    
+<video width="320" height="240" controls>
+  <source src="video.mp4" type="video/mp4">
+  Tu navegador no soporta el elemento de video.
+</video>
+```
+- `<audio>`: etiqueta que define contenido de audio.
+- `<video>`: etiqueta que define contenido de video.
+- `controls`: atributo que agrega controles de reproducción al audio o video.
+- `<source>`: etiqueta que especifica múltiples fuentes de medios para audio o video.
+- `type`: atributo que define el tipo de medio (MIME type).
+
+
+
+---
+## Lazy Loading 💤
+```html
+<img src="imagen.jpg" loading="lazy" alt="Descripción de la imagen">
+```
+- `loading`: atributo que indica al navegador que debe cargar la imagen de forma diferida (lazy loading).
+- `lazy`: valor que indica que la imagen debe cargarse solo cuando esté a punto de entrar en el viewport.
+---
+## HTML Obsoleto ⚠️
+Algunas etiquetas HTML han quedado obsoletas y no se recomiendan para su uso en nuevos proyectos. Aquí hay algunos ejemplos:
+- `<font>`: se usaba para definir el estilo de fuente, pero ahora se recomienda usar CSS.
+- `<center>`: se usaba para centrar contenido, pero ahora se recomienda usar CSS.
+- `<marquee>`: se usaba para crear texto en movimiento, pero no es accesible ni recomendado.
+- `<b>` y `<i>`: se usaban para negrita y cursiva, pero ahora se recomienda usar `<strong>` y `<em>` para indicar énfasis semántico.
+---
+## HTML Semántico 🏛️
+El HTML semántico utiliza etiquetas que describen claramente el propósito del contenido. Aquí hay algunas etiquetas semánticas importantes:
+- `<header>`: define el encabezado de una página o sección.
+- `<nav>`: define un conjunto de enlaces de navegación.
+- `<main>`: define el contenido principal de la página.
+- `<section>`: define una sección genérica de contenido.
+- `<article>`: define un contenido independiente y autocontenido.
+- `<aside>`: define contenido relacionado pero separado del contenido principal.
+- `<footer>`: define el pie de página de una página o sección.
+
+<Figure title="HTML Semántico" src="https://dcreations.es/storage/files/1/blog/html/guia-completa-html-semantico/estructura-html-semantica.png" caption="HTML Semántico" />
+
+Un ejemplo de estructura semántica:
+
+```html
+<body>
+  <header>
+    <h1>Mi Sitio Web</h1>
+    <nav>
+      <a href="#home">Inicio</a>
+      <a href="#about">Acerca de</a>
+      <a href="#contact">Contacto</a>
+    </nav>
+  </header>
+  <main>
+    <section id="home">
+      <h2>Bienvenido</h2>
+      <p>Este es el contenido principal de la página.</p>
+    </section>
+    <aside>
+      <h3>Noticias</h3>
+      <p>Últimas actualizaciones y noticias.</p>
+    </aside>
+  </main>
+  <footer>
+    <p>&copy; 2024 Mi Sitio Web</p>
+  </footer>
+</body>
+```     
+---
+
+## Accesibilidad WEB ♿
+La accesibilidad web se refiere a la práctica de hacer que los sitios web sean utilizables por todas las personas, incluidas aquellas con discapacidades. Aquí hay algunas prácticas recomendadas para mejorar la accesibilidad:
+
+¡Ahhh ya lo tengo clarísimo, héroe! 😅 Ahora sí voy a pasarte **Accesibilidad Web** en **Markdown puro**, con **fragmentos de código incrustados (` ```html `)** y **explicación en texto Markdown** de por qué se usa cada cosa, tal como quieres.
+
+---
+
+## Accesibilidad WEB ♿
+
+La accesibilidad web consiste en hacer que los sitios web sean utilizables por todas las personas, incluidas aquellas con discapacidades. A continuación, ejemplos de buenas prácticas:
+
+### **1. Uso de etiquetas semánticas**
+
+```html
+<header>
+  <h1>Mi sitio web accesible</h1>
+</header>
+<main>
+  <article>
+    <h2>Artículo principal</h2>
+    <p>Contenido del artículo...</p>
+  </article>
+</main>
+```
+
+* **Por qué:** Las etiquetas semánticas (`header`, `main`, `article`) ayudan a los lectores de pantalla y a los motores de búsqueda a entender la estructura del contenido.
+
+---
+
+### **2. Texto alternativo para imágenes**
+
+```html
+<img src="imagen.jpg" alt="Descripción de la imagen">
+```
+
+* **Por qué:** El atributo `alt` permite que personas con discapacidad visual comprendan el contenido de las imágenes usando lectores de pantalla.
+
+---
+
+### **3. Contraste de color adecuado**
+
+```css
+p {
+  color: #000000;       /* texto negro */
+  background-color: #ffffff; /* fondo blanco */
+}
+```
+
+* **Por qué:** Un buen contraste facilita la lectura para personas con baja visión o daltonismo.
+
+---
+
+### **4. Elementos interactivos accesibles con teclado**
+
+```html
+<button onclick="alert('Hola')">Haz clic aquí</button>
+<a href="#seccion">Ir a sección</a>
+```
+
+* **Por qué:** Todos los elementos interactivos deben ser navegables usando solo el teclado para usuarios que no puedan usar un mouse.
+
+---
+
+### **5. Uso de ARIA para componentes dinámicos**
+
+```html
+<div role="alert">
+  Se ha enviado el formulario correctamente.
+</div>
+```
+
+* **Por qué:** Los roles ARIA permiten a los lectores de pantalla informar correctamente sobre elementos dinámicos que cambian en la página.
+
+---
+
+### **6. Subtítulos y transcripciones para multimedia**
+
+```html
+<video controls>
+  <source src="video.mp4" type="video/mp4">
+  <track src="subtitulos.vtt" kind="subtitles" srclang="es" label="Español">
+</video>
+```
+
+* **Por qué:** Subtítulos y transcripciones permiten que personas con discapacidad auditiva comprendan el contenido multimedia.
+
+---
+
+### **7. Formularios accesibles**
+
+```html
+<form>
+  <label for="nombre">Nombre:</label>
+  <input type="text" id="nombre" name="nombre">
+</form>
+```
+
+* **Por qué:** Etiquetas claras (`label`) ayudan a los lectores de pantalla a identificar cada campo correctamente.
+
+---
+
+### **8. Estructura lógica y coherente**
+
+```html
+<h1>Título principal</h1>
+<h2>Subtítulo</h2>
+<h3>Sección secundaria</h3>
+```
+
+* **Por qué:** Mantener una jerarquía correcta de encabezados permite que los usuarios con lectores de pantalla naveguen fácilmente por el contenido.
+---
+
+

@@ -1,0 +1,149 @@
+---
+title: "HTML: 006 - CSS Flexbox"
+slug: html-006
+description: Curso introductorio de HTML, CSS y JavaScript con capítulos organizados en un glosario para facilitar el estudio.
+date: 2025-10-04
+image: hackthebox-driver-writeup.webp
+---
+
+import FixTheImageURL from '../../../components/mdxComponents/FixTheImageURL.astro';
+import Figure from '../../../components/mdxComponents/Figure.astro'
+import { components as MDXComponents } from '../../../components/mdxComponents';
+export const components = MDXComponents;
+
+
+
+---
+<Figure  title='Flexbox ' caption="CSS Flexbox" src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*4yKnG2-vuPF5XA-BmXADLQ.gif" alt="CSS Flexbox" />
+---
+Flexbox es un modelo de diseño en CSS que facilita la distribución y alineación de elementos dentro de un contenedor, incluso cuando su tamaño es desconocido o dinámico. Fue diseñado para mejorar la capacidad de diseño en una dimensión (ya sea fila o columna) y es especialmente útil para crear interfaces responsivas.
+### 1. Introducción a Flexbox
+Para utilizar Flexbox, primero debes definir un contenedor flex. Esto se hace aplicando la propiedad `display: flex;` o `display: inline-flex;` al contenedor padre.
+```css
+.container {
+  display: flex; /* o inline-flex */
+}
+```
+### 2. Flex Direction, Flex Wrap y Flex Flow
+- `flex-direction`: Define la dirección en la que los elementos flexibles se colocan dentro del contenedor. Los valores comunes son:
+  - `row` (predeterminado): Los elementos se colocan en una fila, de izquierda a derecha.
+  - `row-reverse`: Los elementos se colocan en una fila, de derecha a izquierda.
+  - `column`: Los elementos se colocan en una columna, de arriba hacia abajo.
+  - `column-reverse`: Los elementos se colocan en una columna, de abajo hacia arriba.
+```css
+    .container {
+  flex-direction: row; /* o row-reverse, column, column-reverse */
+}
+```
+- `flex-wrap`: Controla si los elementos flexibles deben ajustarse a una nueva línea cuando no caben en una sola línea. Los valores son:
+  - `nowrap` (predeterminado): Todos los elementos se colocan en una sola línea.
+  - `wrap`: Los elementos se ajustan a una nueva línea si es necesario.
+  - `wrap-reverse`: Los elementos se ajustan a una nueva línea en orden inverso.
+```css
+    .container {
+  flex-wrap: wrap; /* o nowrap, wrap-reverse */
+}
+```
+- `flex-flow`: Es una abreviatura para combinar `flex-direction` y `flex-wrap`.
+```css
+    .container {
+  flex-flow: row wrap; /* Combina flex-direction y flex-wrap */
+}
+```
+### 3. Alineación en los ejes
+- `justify-content`: Alinea los elementos a lo largo del eje principal (horizontal en `row`, vertical en `column`). Los valores comunes son:
+  - `flex-start`: Alinea los elementos al inicio del contenedor.
+  - `flex-end`: Alinea los elementos al final del contenedor.
+  - `center`: Centra los elementos en el contenedor.
+  - `space-between`: Distribuye los elementos con espacio igual entre ellos.
+  - `space-around`: Distribuye los elementos con espacio igual alrededor de ellos.
+```css
+    .container {
+  justify-content: center; /* o flex-start, flex-end, space-between, space-around */
+}
+```
+- `align-items`: Alinea los elementos a lo largo del eje transversal (vertical en `row`, horizontal en `column`). Los valores comunes son:
+  - `stretch` (predeterminado): Los elementos se estiran para llenar el contenedor.
+  - `flex-start`: Alinea los elementos al inicio del contenedor.
+  - `flex-end`: Alinea los elementos al final del contenedor.
+  - `center`: Centra los elementos en el contenedor.
+  - `baseline`: Alinea los elementos según su línea base de texto.
+```css
+    .container {
+  align-items: center; /* o stretch, flex-start, flex-end, baseline */
+}
+```
+- `align-content`: Alinea las líneas de elementos flexibles cuando hay espacio extra en el contenedor. Los valores son similares a `align-items`.
+```css
+    .container {
+  align-content: space-between; /* o stretch, flex-start, flex-end, center, space-around */
+}
+```
+### 4. Order
+La propiedad `order` permite cambiar el orden de los elementos flexibles sin alterar el HTML.
+```css
+    .item {
+  order: 2; /* El valor predeterminado es 0 */
+}
+```
+### 5. Flex Básis, Shrink y Grow
+- `flex-basis`: Define el tamaño inicial de un elemento antes de que se distribuya el espacio restante. Puede ser un valor en píxeles, porcentaje o `auto`.
+```css
+    .item {
+  flex-basis: 200px; /* o auto, porcentaje */
+}
+```
+- `flex-grow`: Define la capacidad de un elemento para crecer si hay espacio disponible. Un valor de `1` permite que el elemento crezca para llenar el espacio disponible.
+```css
+    .item {
+  flex-grow: 1; /* El valor predeterminado es 0 */
+}
+```
+- `flex-shrink`: Define la capacidad de un elemento para encogerse si no hay suficiente espacio. Un valor de `1` permite que el elemento se encoja.
+```css
+    .item {
+    flex-shrink: 1; /* El valor predeterminado es 1 */  
+}
+```
+- `flex`: Es una abreviatura para combinar `flex-grow`, `flex-shrink` y `flex-basis`.
+```css
+    .item {
+  flex: 1 1 200px; /* flex-grow, flex-shrink, flex-basis */
+}
+```
+### 6. Align Self
+La propiedad `align-self` permite anular la alineación de un elemento específico a lo largo del eje transversal.
+```css
+    .item {
+  align-self: center; /* o auto, stretch, flex-start, flex-end, baseline */
+}
+```
+### 7. Layout con Flexbox
+Flexbox es ideal para crear layouts responsivos y adaptativos. Aquí hay un ejemplo básico de cómo usar Flexbox para crear un layout simple:
+```html
+<div class="container">
+  <div class="item">Item 1</div>
+  <div class="item">Item 2</div>
+  <div class="item">Item 3</div>
+</div>
+```
+
+```css
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+}       
+.item {
+  flex: 1 1 200px;
+  margin: 10px;
+  padding: 20px;
+  background-color: lightblue;
+  text-align: center;
+}
+```
+Este código crea un contenedor flex que distribuye tres elementos de manera uniforme, permitiendo que se ajusten a diferentes tamaños de pantalla.
+Flexbox es una herramienta poderosa para el diseño web moderno, y dominar sus propiedades te permitirá crear interfaces de usuario flexibles y responsivas con facilidad.   

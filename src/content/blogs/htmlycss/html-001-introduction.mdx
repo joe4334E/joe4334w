@@ -1,0 +1,157 @@
+---
+title: "HTML: 001 - Introducción"
+slug: html-001
+description: Presentación del curso, objetivos y explicación del entorno de trabajo para desarrollar sitios web.
+date: 2025-10-04
+image: hackthebox-driver-writeup.webp
+---
+
+import FixTheImageURL from '../../../components/mdxComponents/FixTheImageURL.astro';
+import Figure from '../../../components/mdxComponents/Figure.astro'
+import { components as MDXComponents } from '../../../components/mdxComponents';
+import Coder from '../../../components/mdxComponents/Coder.astro';
+export const components = MDXComponents;
+
+## 1. Introducción
+
+¿Alguna vez te preguntaste cómo funciona una página, sitio o una aplicación web ? 🤔
+HTML es como los **ladrillos** de una casa: sin ellos, no hay estructura. Con HTML defines **qué aparece**, cómo se organiza y qué elementos forman tu página.
+
+### Historia breve
+
+Desde 1991 hasta hoy, HTML ha evolucionado de simples etiquetas de texto a **herramientas que permiten multimedia, animaciones y aplicaciones completas**.
+
+
+<Figure src="https://www.keentodesign.com.au/cdn-cgi/imagedelivery/eOylWWvDYZyJkbAUtQZpuQ/www.keentodesign.com.au/html.png/w=768" alt="Línea de tiempo de HTML"caption="Figura 2" />
+
+### ¿Por qué aprender HTML?
+
+* Es el primer paso para crear páginas web.
+* Sin HTML, no hay CSS ni JavaScript que funcionen.
+* Te permite **entender la web desde la base**, no solo copiar y pegar código.
+
+
+## 2.  Entendiendo la WEB
+
+La web es un **ecosistema vivo**: navegadores, servidores, protocolos, y tú como creador interactuando con ellos.
+
+### Cómo funciona
+
+Imagina que visitas un sitio: tu navegador **pregunta** al servidor y este responde con los archivos HTML, CSS y JS.
+El navegador interpreta y… ¡voilà! Tu página aparece.
+
+### Tipos de páginas
+
+* **Estática**: No cambia a menos que tú lo hagas (perfecta para blogs simples).
+* **Dinámica**: Cambia según quien la visite, gracias a programación en el servidor.
+Ahora sí, vamos a meter mano al código. Pero tranqui, que **no vamos a morir en etiquetas**.
+
+### Estructura básica de un documento HTML
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<title>Mi Primera Página</title>
+	</head>
+	<body>
+		<h1>¡Hola Mundo!</h1>
+		<p>Bienvenido a tu primer archivo HTML.</p>
+	</body>
+</html>
+```
+
+### CSS al rescate
+
+CSS es **la magia visual**. Cambia colores, fuentes, tamaños… Incluso puedes centrar tu texto y hacer que tu página se vea profesional sin Photoshop.
+
+		```html
+<style>
+	body { font-family: Arial, sans-serif; background-color: #f9f9f9; }
+	h1 { color: #1a73e8; text-align:center; }
+	p { font-size:16px; color:#333; }
+</style>
+	```
+
+	<Figure src="https://www.hostinger.com/es/tutoriales/wp-content/uploads/sites/32/2023/11/image-25.png" alt="Ejemplo de HTML y CSS" caption="Ejemplo de HTML y CSS" />
+
+	---
+
+	## 26:10 - Editor de código
+
+	No vas a escribir HTML en el bloc de notas. 😅 Necesitas **herramientas que te faciliten la vida**.
+
+	### Recomendaciones
+
+	* **Visual Studio Code**: Gratis, con extensiones y Live Server.
+	* Sublime Text: Ligero y rápido, ideal si tu PC es lenta.
+	* Atom: Personalizable y con comunidad enorme de plugins.
+	* Vim: Si te gusta programar desde la terminal puedes usar vim o su fork neovim
+
+	### Uso de vim como ide de desarrollo web 
+	Vim es un editor de texto muy poderoso que se ejecuta en la terminal. Es altamente configurable y tiene una gran cantidad de plugins disponibles para mejorar la experiencia de desarrollo web. Aquí te dejo una guía rápida para empezar a usar Vim como tu IDE de desarrollo web:
+	1. Instala Vim en tu sistema. En la mayoría de las distribuciones de Linux, puedes hacerlo con el siguiente comando:
+	```bash
+	sudo apt-get install vim
+	```
+	2. Configura Vim para el desarrollo web. Puedes crear un archivo `.vimrc`
+	en tu directorio home con las siguientes configuraciones básicas:
+	```vim
+	set number " Muestra los números de línea
+	set tabstop=4 " Establece el tamaño de tabulación a 4 espacios
+	set shiftwidth=4 " Establece el tamaño de indentación a 4 espacios
+	set expandtab " Usa espacios en lugar de tabulaciones
+	syntax on " Habilita el resaltado de sintaxis
+	filetype plugin indent on " Habilita la detección automática de tipos de archivo y la indentación
+	```
+	3. Instala plugins para mejorar la experiencia de desarrollo web. Algunos plugins recomendados son:
+	* [NERDTree](https://github.com/preservim/nerdtree): Un explorador de archivos para Vim.
+	* [vim-airline](https://github.com/vim-airline/vim-airline): Una barra de estado elegante para Vim.
+	* [ctrlp.vim](https://github.com/ctrlpvim/ctrlp.vim): Un buscador de archivos rápido y eficiente.
+	* [emmet-vim](https://github.com/mattn/emmet-vim): Soporte para Emmet en Vim.	
+	4. Aprende los comandos básicos de Vim. Aquí hay algunos comandos esenciales para empezar:
+	* `i`: Entra en modo de inserción para escribir texto.
+	* `Esc`: Sal del modo de inserción y vuelve al modo normal.
+	* `:w`: Guarda el archivo actual.
+	* `:q`: Sal de Vim.
+	* `:wq`: Guarda y sal de Vim.
+	* `:q!`: Sal de Vim sin guardar los cambios.
+	* `dd`: Elimina la línea actual.
+	* `yy`: Copia la línea actual.
+	* `p`: Pega el texto copiado o cortado.
+	* `u`: Deshace el último cambio.
+	* `/texto`: Busca "texto" en el archivo.
+	* `:help`: Abre la ayuda de Vim.
+	5. Practica y explora más comandos y plugins a medida que te sientas cómodo con Vim. Hay muchos recursos en línea y tutoriales disponibles para aprender más sobre Vim y sus capacidades.
+
+	Figura: "Vim en acción"
+	<Figure src="https://lh6.googleusercontent.com/proxy/Tbhm9u-iroqfqHaiWn9YIRyyzqjNdRX9JOjmS9N_koJBCGbc5dXvgZlaQafq4WK5OV_KQXyLXRZnFtw3BiTKhb9DVFlzsWPJIzTssdYZkOmxhMkjl-yVS4jlAjmasNKzrdEQAQ" alt="Vim en acción" caption="Vim en acción" />
+
+	### Mini guía VS Code
+
+	1. Instala VS Code desde su [Link](https://code.visualstudio.com/).
+	2. Añade la extensión **Live Server**.
+	3. Crea tu carpeta de proyecto y un archivo `index.html`.
+	4. Haz clic en “Go Live” y verás tus cambios en tiempo real.
+
+	> **Ingresar figura: “VS Code + Live Server en acción”**
+	<Figure src="https://global.discourse-cdn.com/freecodecamp/optimized/3X/5/3/53ab9366b0d9df93abf8ebc51e4362ffd5c3d34d_2_690x249.gif" alt="VS Code + Live Server en acción" caption="VS Code + Live Server enacción" />
+
+	### Tu primer proyecto
+
+	* Archivo: `index.html`
+	* Contenido: tu nombre, una breve presentación y un color de fondo divertido.
+	* Guarda, abre en el navegador y ¡celebra tu primera página web! 🎉
+
+	---
+
+	💡 **Mini reto para el lector**
+
+	* Cambia el color de fondo(usas `background-color`).
+	* Añade un párrafo contando tu comida favorita.
+	* Crea un título `<h2>` con tu hobby.
+
+	**Bueno es hora de usar un poco de HTML**
+
+<Coder />

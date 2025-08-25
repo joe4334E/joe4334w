@@ -1,0 +1,471 @@
+---
+title: "HTML: 005 - CSS Avanzado"
+slug: html-005
+description: Selectores avanzados, herencia y cascada, pseudoclases, pseudoelementos, metodología BEM, posicionamiento (relative, absolute, fixed, sticky), transiciones y overflow.
+date: 2025-10-04
+image: hackthebox-driver-writeup.webp
+---
+
+import FixTheImageURL from '../../../components/mdxComponents/FixTheImageURL.astro';
+import { components as MDXComponents } from '../../../components/mdxComponents';
+export const components = MDXComponents;
+
+## Selectores (Avanzado)
+## Herencia, Cascada y Especificidad
+## Pseudoclases
+## Pseudoelementos
+## Metodología BEM
+## Display
+## Posición Relativa y Absoluta
+## Ventanas Modal
+## Posición Fixed y Sticky
+## Transiciones
+## Desbordamiento (overflow)
+## Control de flujo del texto
+## Object fit y Object position
+## Contorno (outline)
+## Emmet (material re-usado)
+
+---
+
+## Selectores (Avanzado) 🎯
+```css
+/* Selector de clase */
+.mi-clase {
+  color: blue;
+}
+
+/* Selector de ID */
+#mi-id {
+  font-size: 20px;
+}
+
+/* Selector de atributo */
+input[type="text"] {
+  border: 1px solid #ccc;
+}
+
+/* Selector de hijo */
+ul > li {
+  list-style-type: none;
+}
+
+/* Selector de hermano adyacente */
+h1 + p {
+  margin-top: 0;
+}
+/* Selector de hermano general */
+h1 ~ p {
+  color: gray;
+}
+/* Selector universal */
+* {
+    box-sizing: border-box;
+}   
+``` 
+* Combina selectores para apuntar a elementos específicos.
+* Usa selectores de atributo para estilos dinámicos.
+* Los selectores de hijo y hermano ayudan a estructurar el diseño.
+* El selector universal aplica estilos globales.
+---
+## Herencia, Cascada y Especificidad 🏛️ 
+```css
+/* Herencia */
+body {
+  font-family: Arial, sans-serif;
+  color: black;
+}   
+p {
+  font-size: 16px; /* Hereda color de body */
+}   
+/* Cascada */
+h1 {    
+  color: blue;
+}   
+h1 {    
+  color: red; /* Este estilo prevalece */
+}   
+/* Especificidad */
+#mi-id {
+  color: green; /* Más específico que .mi-clase */
+}   
+.mi-clase {
+  color: orange;
+}   
+```
+* La herencia permite que los estilos se propaguen a elementos hijos.
+* La cascada determina qué estilos se aplican cuando hay conflictos.
+* La especificidad define qué reglas tienen prioridad.
+---
+## Pseudoclases 🕵️‍♂️
+
+```css
+/* Pseudoclase :hover */
+a:hover {
+  color: red;
+}
+
+/* Pseudoclase :focus */
+input:focus {
+  border-color: blue;
+}
+
+/* Pseudoclase :nth-child */
+li:nth-child(2) {
+  font-weight: bold;
+}
+```
+* Las pseudoclases permiten aplicar estilos en estados específicos.
+* :hover se activa al pasar el ratón sobre un elemento.
+* :focus se activa al seleccionar un elemento, como un campo de entrada.
+* :nth-child permite seleccionar elementos en función de su posición en el DOM.
+---
+## Pseudoelementos ✂️
+```css
+/* Pseudoelemento ::before */
+h1::before {
+  content: "★ ";
+  color: gold;
+}   
+/* Pseudoelemento ::after */
+h1::after {
+  content: " ★";
+  color: gold;
+}   
+/* Pseudoelemento ::first-letter */
+p::first-letter {
+  font-size: 2em;
+  color: red;
+}
+```
+* Los pseudoelementos permiten insertar contenido antes o después de un elemento.
+* ::before y ::after son útiles para decoraciones y efectos visuales.
+* ::first-letter estiliza la primera letra de un párrafo.
+---
+## Metodología BEM 🏗️ 
+```css
+/* Bloque */
+.boton {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}   
+/* Elemento */
+.boton__icono {
+  margin-right: 8px;
+}   
+/* Modificador */
+.boton--grande {
+  padding: 15px 30px;
+  font-size: 18px;
+}   
+.boton--pequeño {
+  padding: 5px 10px;
+  font-size: 12px;
+}   
+```
+* BEM (Bloque, Elemento, Modificador) es una metodología para nombrar clases CSS.
+* Facilita la lectura y el mantenimiento del código.
+* Promueve la reutilización de componentes y estilos.
+
+Ejemplo especifico con css nesting nativo  y con sass
+```css
+/* CSS Nesting Nativo */
+.boton {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* SASS */
+.boton {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+  &__icono {
+    margin-right: 8px;
+  }
+  &--grande {
+    padding: 15px 30px;
+    font-size: 18px;
+  }
+  &--pequeño {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+}
+```
+---
+## Display 📐
+```css
+.boton {
+  display: inline-flex;
+  align-items: center;
+}
+```
+* `block`: el elemento ocupa todo el ancho disponible.
+* `inline`: el elemento ocupa solo el espacio necesario.
+* `inline-block`: combina características de block e inline.
+* `flex`: crea un contenedor flexible para distribuir espacio entre elementos.
+* `grid`: crea un contenedor de cuadrícula para un diseño bidimensional.
+* `inline-flex`: combina características de inline y flex.
+* `inline-grid`: combina características de inline y grid.
+---
+## Posición Relativa y Absoluta 📍
+```css
+.contenedor {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  background-color: lightgray;
+}   
+.elemento-absoluto {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+  width: 100px;
+  height: 50px;
+  background-color: blue;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+```
+* `position: relative`: posiciona el elemento en relación a su posición normal.
+* `position: absolute`: posiciona el elemento en relación a su contenedor más cercano con posición relativa.
+* Usa `top`, `right`, `bottom`, `left` para ajustar la posición.
+--- 
+## Ventanas Modal 🪟
+```css
+.modal {
+  display: none; /* Oculto por defecto */
+  position: fixed; /* Fijo en la pantalla */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+.modal-contenido {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+```
+* Usa `position: fixed` para que la modal permanezca en pantalla al hacer scroll.
+* `display: none` oculta la modal; cámbialo a `flex` para mostrarla.
+* El fondo semitransparente crea un efecto de superposición.
+* Centra el contenido de la modal con Flexbox.
+---
+## Posición Fixed y Sticky 📌
+```css
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.contenido {
+  padding-top: 70px; /* Espacio para el header fijo */
+}
+.sticky {
+  position: sticky;
+  top: 0;
+  background-color: yellow;
+  padding: 10px;
+  font-size: 20px;
+}
+```
+* `position: fixed`: fija el elemento en la pantalla, independientemente del scroll.
+* `position: sticky`: el elemento se comporta como `relative` hasta que alcanza un punto de scroll, luego se fija.
+* Usa `top`, `right`, `bottom`, `left` para ajustar la posición.
+---
+## Transiciones ⏳
+```css
+.boton {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.boton:hover {
+  background-color: darkblue;
+  transform: scale(1.05);
+}
+```
+* `transition`: define las propiedades que cambiarán, la duración y el tipo de transición.
+* Usa `ease`, `linear`, `ease-in`, `ease-out` para diferentes efectos de transición.
+* `transform`: aplica transformaciones 2D o 3D a un elemento.
+* `scale()`: cambia el tamaño del elemento.
+* `rotate()`: rota el elemento.
+* `translate()`: mueve el elemento en el eje X e Y.
+* `skew()`: sesga el elemento.
+* `matrix()`: aplica una transformación 2D compleja.
+* `perspective()`: define la perspectiva para transformaciones 3D.
+* `rotateX()`, `rotateY()`, `rotateZ()`: rota el elemento en los ejes X, Y o Z.
+* `translateX()`, `translateY()`, `translateZ()`: mueve el elemento en los ejes X, Y o Z.
+* `scaleX()`, `scaleY()`, `scaleZ()`: escala el elemento en los ejes X, Y o Z.
+* `skewX()`, `skewY()`: sesga el elemento en los ejes X o Y.
+* `matrix3d()`: aplica una transformación 3D compleja.
+
+---
+
+## Desbordamiento (overflow) 📜
+```css
+.contenedor {
+  width: 300px;
+  height: 150px;
+  border: 1px solid #ccc;
+  overflow: auto; /* Agrega scroll si el contenido desborda */
+}
+```
+* `overflow: visible`: el contenido desbordado es visible (valor por defecto).
+* `overflow: hidden`: el contenido desbordado se oculta.
+* `overflow: scroll`: siempre muestra barras de desplazamiento.
+* `overflow: auto`: muestra barras de desplazamiento solo si es necesario.
+* `overflow-x`: controla el desbordamiento horizontal.
+* `overflow-y`: controla el desbordamiento vertical.
+---
+## Control de flujo del texto 📝
+```css
+.parrafo {
+  text-align: justify;
+  text-indent: 20px;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  word-spacing: 2px;
+  text-transform: capitalize;
+  white-space: pre-wrap;
+}
+```
+* `text-align`: alinea el texto (left, right, center, justify).
+* `text-indent`: indenta la primera línea del párrafo.
+* `line-height`: controla el espacio entre líneas.
+* `letter-spacing`: ajusta el espacio entre letras.
+* `word-spacing`: ajusta el espacio entre palabras.
+* `text-transform`: transforma el texto (uppercase, lowercase, capitalize).
+* `white-space`: controla cómo se maneja el espacio en blanco (normal, nowrap, pre, pre-wrap, pre-line).
+---
+## Object fit y Object position 🖼️
+
+```css
+.imagen {
+  width: 100%;
+  height: 300px;
+  object-fit: cover; /* Cubre todo el contenedor */
+  object-position: center; /* Centra la imagen */
+}
+```
+* `object-fit`: define cómo se ajusta el contenido de un elemento reemplazado (como una imagen) a su caja.
+  * `cover`: la imagen cubre todo el contenedor, recortando si es necesario.
+  * `contain`: la imagen se ajusta dentro del contenedor sin recortarse.
+  * `fill`: la imagen se estira para llenar el contenedor.
+* `object-position`: define la posición de la imagen dentro de su caja.
+  * Valores: `left`, `right`, `top`, `bottom`, `center`, o combinaciones (ej. `top left`).
+---
+## Contorno (outline) 🔲
+```css
+.boton {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: 2px solid transparent; /* Contorno invisible por defecto */
+  transition: outline-color 0.3s ease;
+}
+.boton:focus {
+  outline-color: orange; /* Contorno visible al enfocar */
+}
+```
+* `outline`: dibuja un contorno alrededor del elemento, sin afectar su tamaño o posición.
+* `outline-width`: define el grosor del contorno.           
+* `outline-style`: define el estilo del contorno (solid, dashed, dotted, double, none).
+* `outline-color`: define el color del contorno.
+* `outline-offset`: define la distancia entre el borde del elemento y el contorno.
+* Útil para mejorar la accesibilidad al enfocar elementos interactivos.
+---
+## Emmet 🚀
+
+Emmet es una herramienta que permite escribir código HTML y CSS de manera más rápida y eficiente mediante abreviaturas. Algunas características clave son:
+
+* **Abreviaturas**: Escribe una abreviatura y presiona `Tab` para expandirla en código completo.
+* **Nesting**: Permite crear estructuras anidadas fácilmente.
+* **Shortcuts**: Usa atajos de teclado para insertar elementos comunes rápidamente.
+
+### Ejemplo de uso
+
+```html
+ul>li*5
+```
+
+Al expandir esta abreviatura, se generará el siguiente código:
+
+```html
+<ul>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
+```
+* **Multiplicadores**: Usa `*` para crear múltiples elementos.
+* **Clases e IDs**: Usa `.` para clases y `#` para IDs.
+* **Atributos**: Usa `[]` para agregar atributos a los elementos.   
+
+```html
+<a href="https://example.com">Enlace</a>
+```
+
+```html
+a[href="https://example.com"]
+``` 
+* **Texto**: Usa `{}` para agregar texto dentro de un elemento.
+
+```html
+<p>Hola Mundo</p>
+``` 
+
+```html
+<p>{Hola Mundo}</p>
+```
+* **Combina**: Combina varias abreviaturas para crear estructuras complejas.
+
+```html
+<ul>
+  <li><a href="https://example.com">Enlace</a></li>
+  <li><a href="https://example.com">Enlace</a></li>
+  <li><a href="https://example.com">Enlace</a></li>
+</ul>
+```
+
+```html
+ul>li*3>a[href="https://example.com"]{Enlace}
+``` 
+* **Atajos de teclado**: Usa `Ctrl + E` (o `Cmd + E` en Mac) para expandir abreviaturas en muchos editores de código.
+* **Soporte en editores**: Emmet está integrado en muchos editores de código populares como VSCode, Sublime Text y Atom.
+* **Personalización**: Puedes personalizar las abreviaturas y configuraciones de Emmet según tus necesidades.   
+* **Documentación**: Consulta la [documentación oficial de Emmet](https://emmet.io/) para aprender más sobre sus características y cómo usarlo eficazmente.
+---

@@ -1,0 +1,155 @@
+---
+title: "HTML: 002 - Html Basico"
+slug: html-002 
+description: Fundamentos de HTML, estructura de etiquetas, páginas web, párrafos, listas, enlaces, imágenes, formularios y un proyecto simple sin CSS.
+date: 2025-10-04
+image: hackthebox-driver-writeup.webp
+---
+
+import FixTheImageURL from '../../../components/mdxComponents/FixTheImageURL.astro';
+import Figure from '../../../components/mdxComponents/Figure.astro';
+import { components as MDXComponents } from '../../../components/mdxComponents';
+export const components = MDXComponents;
+
+
+## Estructura de una etiqueta HTML 🏷
+
+Al empezar a escribir HTML, es fundamental entender la estructura básica de una etiqueta. Cada etiqueta HTML tiene una apertura y un cierre, y puede contener atributos que modifican su comportamiento.
+
+```html
+<p class="texto">Hola, mundo!</p>
+```
+
+- `<p>`: etiqueta de apertura.
+- `</p>`: etiqueta de cierre.
+- `class="texto"`: atributo que asigna una clase a la etiqueta.
+
+<Figure src="https://miro.medium.com/v2/resize:fit:640/format:webp/1*Nv9oq9No3GLw9uOUYHu94A.png" alt="Estructura de una Etiqueta HTML" caption="Figura 1: Estructura de una Etiqueta HTML" />
+
+## Estructura de una página web 🌐
+
+Una página web está compuesta por varias etiquetas HTML que definen su estructura y contenido. Aquí tienes un ejemplo básico:
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Primera Página</title>
+</head>
+<body>
+    <h1>Bienvenido a mi página web</h1>
+    <p>Este es un párrafo de ejemplo.</p>
+</body>
+</html>
+```
+
+- `<!DOCTYPE html>`: declara el tipo de documento.
+- `<html>`: etiqueta raíz que contiene todo el contenido de la página.
+- `<head>`: contiene metadatos y enlaces a recursos externos.
+- `<body>`: contiene el contenido visible de la página.
+---
+
+## Párrafos y encabezados 📝
+Los párrafos y encabezados son elementos fundamentales para estructurar el contenido de una página web.
+
+```html
+<h1>Encabezado Principal</h1>
+<h2>Subencabezado</h2>
+<h3>Encabezado de Nivel 3</h3>
+<h4>Encabezado de Nivel 4</h4>
+<h5>Encabezado de Nivel 5</h5>
+<h6>Encabezado de Nivel 6</h6>
+<p>Este es un párrafo de texto que proporciona información adicional.</p>
+<br> <!-- Salto de línea -->
+```
+
+- `<h1>` a `<h6>`: etiquetas de encabezado, donde `<h1>` es el más importante y `<h6>` el menos.
+- `<p>`: etiqueta de párrafo para bloques de texto.
+
+## Listas 📋
+Las listas permiten organizar información de manera estructurada. Hay dos tipos principales: listas ordenadas y
+listas desordenadas.
+
+```html
+<ul>
+    <li>Elemento de lista desordenada 1</li>
+    <li>Elemento de lista desordenada 2</li>
+</ul>
+<ol>
+    <li>Elemento de lista ordenada 1</li>
+    <li>Elemento de lista ordenada 2</li>
+</ol>
+```
+- `<ul>`: lista desordenada (con viñetas).
+- `<ol>`: lista ordenada (numerada).
+- `<li>`: elemento de lista.
+---
+
+## Enlaces 🔗
+Los enlaces permiten conectar diferentes páginas web o recursos. Se crean con la etiqueta `<a>`.
+```html
+<a href="https://www.ejemplo.com" target="_blank">Visitar Ejemplo</a>
+```
+- `href`: atributo que especifica la URL del enlace.
+- `target="_blank"`: abre el enlace en una nueva pestaña.
+---
+## Imágenes y Rutas 🖼
+
+Las imágenes se insertan en una página web utilizando la etiqueta `<img>`. Es importante especificar la ruta de la imagen correctamente.
+
+```html
+<img src="ruta/de/la/imagen.jpg" alt="Descripción de la imagen">
+```
+- `src`: atributo que especifica la ruta de la imagen.
+- `alt`: atributo que proporciona una descripción alternativa de la imagen.
+---
+## Formularios 📝
+Los formularios permiten a los usuarios enviar datos a un servidor. Se crean con la etiqueta `<
+form>`.
+```html
+<form action="/submit" method="post">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" required>
+    <input type="submit" value="Enviar">
+</form>
+```     
+- `action`: atributo que especifica la URL a la que se enviarán los datos del formulario.
+- `method`: atributo que define el método de envío (GET o POST).
+- `<label>`: etiqueta que define una etiqueta para un elemento de formulario.
+- `<input>`: etiqueta que define un campo de entrada.
+---
+## Proyecto Básico sin CSS 🛠
+Vamos a crear una página web simple que incluya todos los elementos que hemos aprendido.
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0
+    <title>Mi Página Web Básica</title>
+</head>
+<body>
+    <h1>Bienvenido a Mi Página Web</h1>
+    <p>Este es un párrafo introductorio sobre mi página web.</p>
+    <h2>Lista de Mis Hobbies</h2>
+    <ul>
+        <li>Leer</li>
+        <li>Viajar</li>
+        <li>Programar</li>
+    </ul>
+    <h2>Contacto</h2>
+    <form action="/submit" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <input type="submit" value="Enviar">
+    </form>
+    <p>Visita mi <a href="https://www.ejemplo.com" target="_blank">sitio web</a> para más información.</p>
+    <img src="ruta/de/la/imagen.jpg" alt="Descripción de la imagen">
+</body>
+</html>
+```
+Este proyecto básico incluye encabezados, párrafos, listas, un formulario, enlaces e imágenes. ¡Felicidades! Has completado tu primera página web sin CSS.  
+
+

@@ -1,0 +1,219 @@
+---
+title: "HTML: 009 - Animaciones"
+slug: html-009
+description: Transiciones, animaciones por fotogramas, efectos visuales (botones, typewriter, scroll) e integración en proyectos reales.
+date: 2025-10-04
+image: hackthebox-driver-writeup.webp
+---
+
+import FixTheImageURL from '../../../components/mdxComponents/FixTheImageURL.astro';
+import { components as MDXComponents } from '../../../components/mdxComponents';
+export const components = MDXComponents;
+
+
+
+## Transiciones
+Las transiciones son una forma de animar cambios en los estilos de un elemento HTML. Permiten suavizar la transición entre dos estados diferentes, como cambiar el color de fondo o el tamaño de un botón al pasar el cursor sobre él.
+```html
+<button class="transition-button">Hover me!</button>
+```
+```css
+.transition-button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.transition-button:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+```
+## Animaciones
+Las animaciones permiten crear efectos visuales más complejos que las transiciones. Se pueden definir animaciones utilizando la regla `@keyframes` en CSS, lo que permite especificar múltiples etapas de una animación.
+```html
+<div class="animated-box"></div>
+```
+```css
+.animated-box {
+  width: 100px;
+  height: 100px;
+  background-color: #e74c3c;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+```
+## Botones Animados y Efecto Typewriter
+Los botones animados pueden mejorar la experiencia del usuario al interactuar con la página. El efecto typewriter es un ejemplo clásico de animación que simula el efecto de escribir texto letra por letra.
+```html
+<button class="animated-button">Click me!</button>
+<div class="typewriter-effect">Hello, World!</div>
+```
+```css
+.animated-button {
+  background-color: #2ecc71;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.animated-button:hover {
+  background-color: #27ae60;
+  transform: scale(1.05);
+}
+.typewriter-effect {
+  font-family: monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid;
+  width: 0;
+  animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: black;
+  }
+}
+```
+## Animaciones basadas en Scroll
+Las animaciones basadas en scroll permiten activar efectos visuales a medida que el usuario desplaza la página. Esto puede incluir animaciones de entrada, salida o cambios de estilo en elementos específicos.
+```html
+<div class="scroll-animation">Scroll down to see the effect!</div>
+```
+```css
+.scroll-animation {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.scroll-animation.visible {
+  opacity: 1;
+}
+```
+```javascript
+window.addEventListener('scroll', () => {
+  const element = document.querySelector('.scroll-animation');
+  const position = element.getBoundingClientRect();
+  if (position.top < window.innerHeight && position.bottom >= 0) {
+    element.classList.add('visible');
+  } else {
+    element.classList.remove('visible');
+  }
+});
+```
+## Rango de animaciones
+El rango de animaciones en CSS es amplio e incluye desde transiciones simples hasta animaciones complejas. Puedes combinar diferentes propiedades CSS, como transformaciones, opacidad y colores, para crear efectos visuales atractivos.
+```css
+@keyframes complex-animation {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2) rotate(15deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+.element {
+  animation: complex-animation 3s infinite;
+}
+```
+## Integrando animaciones en una WEB
+Integrar animaciones en una web implica planificar cómo y cuándo se activarán las animaciones. Es importante no abusar de las animaciones, ya que pueden distraer al usuario si se utilizan en exceso. Utiliza animaciones para resaltar acciones importantes o mejorar la experiencia del usuario.
+```html
+<div class="container">
+  <button class="animated-button">Submit</button>
+  <div class="animated-box"></div>
+</div>
+```
+```css
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}   
+
+.animated-button {
+  background-color: #8e44ad;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.animated-button:hover {
+
+    background-color: #732d91;
+    transform: scale(1.05);
+    }
+.animated-box {
+  width: 100px;
+  height: 100px;
+  background-color: #f1c40f;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { 
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+        }
+}
+
+## Animaciones, cumpliendo la promesa
+Las animaciones deben cumplir la promesa de mejorar la experiencia del usuario sin distraerlo. Utiliza animaciones para guiar al usuario, resaltar acciones importantes y hacer que la interacción con tu sitio web sea más agradable.
+```html
+<div class="promise-animation">Promise fulfilled!</div>
+```
+```css
+.promise-animation {
+  font-size: 24px;
+  color: #2c3e50;
+  animation: fadeIn 2s ease-in-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+```     
+---

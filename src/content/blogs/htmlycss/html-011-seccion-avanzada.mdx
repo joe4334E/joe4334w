@@ -1,0 +1,178 @@
+---
+title: "HTML: 011- Sección avanzada de Html"
+slug: html-011
+description: Curso introductorio de HTML, CSS y JavaScript con capítulos organizados en un glosario para facilitar el estudio.
+date: 2025-10-04
+image: hackthebox-driver-writeup.webp
+---
+import FixTheImageURL from '../../../components/mdxComponents/FixTheImageURL.astro';
+import Figure from '../../../components/mdxComponents/Figure.astro';
+import Admonition from '../../../components/mdxComponents/Admonition.astro';
+
+
+## Sección Avanzada de HTML y CSS ✨
+
+> En esta lección vamos a explorar **propiedades y funciones avanzadas de CSS** que le dan vida y dinamismo a tus sitios web. ¡Prepárate para llevar tus habilidades al siguiente nivel! 🚀
+
+
+## Filter y Backdrop Filter 🌈
+
+Los filtros permiten modificar visualmente elementos **sin alterar su HTML**.
+
+```css
+img {
+  filter: grayscale(50%) blur(2px) brightness(120%);
+}
+````
+
+* **`filter`**: aplica efectos como blur, brillo, saturación, contraste, etc.
+* **`backdrop-filter`**: aplica efectos sobre el **fondo que está detrás** del elemento (útil con transparencias).
+
+<Figure src="https://via.placeholder.com/1200x500.png?text=Filter+CSS" alt="Ejemplo Filter CSS" caption="Figura 1: Ejemplo de filter y backdrop-filter" />
+
+💡 **Tip:** Úsalo con moderación; demasiado blur o brillo puede afectar la legibilidad.
+
+
+
+## Transform 🌀
+
+Permite **mover, rotar, escalar y sesgar** elementos.
+
+```css
+div {
+  transform: rotate(15deg) scale(1.2) translateX(50px);
+}
+```
+
+* `rotate()`: gira el elemento.
+* `scale()`: agranda o reduce.
+* `translateX()/translateY()`: mueve el elemento horizontal o verticalmente.
+* `skew()`: sesga el elemento.
+
+## Min, Max y Clamp 🛠️
+
+Controla **tamaños responsivos** sin romper el diseño.
+
+```css
+font-size: clamp(1rem, 2vw, 2rem);
+width: min(500px, 80%);
+height: max(300px, 50%);
+```
+
+* `min()`: usa el valor más pequeño.
+* `max()`: usa el valor más grande.
+* `clamp()`: define un valor mínimo, ideal y máximo.
+
+
+## Variables (Custom Properties) 🎨
+
+Permiten **reutilizar valores** y mantener consistencia.
+
+```css
+:root {
+  --color-principal: #1a73e8;
+  --padding-general: 16px;
+}
+
+h1 {
+  color: var(--color-principal);
+  padding: var(--padding-general);
+}
+```
+
+💡 **Tip:** Cambiar el valor de la variable en `:root` actualiza todos los elementos que la usan. Muy útil para temas claros/oscuro.
+
+
+## Función Calc 🧮
+
+Realiza **cálculos dinámicos** con CSS.
+
+```css
+div {
+  width: calc(100% - 40px);
+  margin-left: calc(2rem + 10px);
+}
+```
+
+* Mezcla unidades (`px`, `%`, `rem`) en un mismo cálculo.
+
+
+## Propiedades del Scroll 🖱️
+
+Controlan la experiencia de **desplazamiento**:
+
+```css
+html {
+  scroll-behavior: smooth;
+}
+div {
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+}
+```
+
+* `scroll-behavior: smooth` → scroll animado.
+* `scroll-snap-type` → engancha elementos a puntos específicos.
+
+
+## Initial Letter 🔠
+
+Destaca la **primera letra de un párrafo**.
+
+```css
+p::first-letter {
+  font-size: 3rem;
+  color: #ff5722;
+  float: left;
+}
+```
+
+
+## Unidades del Viewport 🖼️
+
+* `vw`: ancho de la ventana (1vw = 1% del ancho).
+* `vh`: alto de la ventana (1vh = 1% del alto).
+* `vmin` / `vmax`: mínimo/máximo entre ancho y alto.
+
+```css
+h1 {
+  font-size: 10vmin; /* se ajusta según pantalla */
+}
+```
+
+
+## Min-content, Max-content y Fit-content 📐
+
+Controla **tamaños de elementos** según contenido:
+
+```css
+div {
+  width: min-content; /* mínimo necesario */
+  height: max-content; /* máximo requerido */
+  width: fit-content; /* ajusta al contenido */
+}
+```
+
+
+## Función Color Mix 🎨
+
+Combina colores dinámicamente:
+
+```css
+div {
+  background-color: color-mix(in srgb, red 30%, blue 70%);
+}
+```
+
+* Mezcla colores sin necesidad de herramientas externas.
+
+
+## Mini ejercicio práctico 💻
+
+1. Crea un `div` con fondo degradado y primer letra grande (`initial-letter`).
+2. Aplica un `filter` y `transform` al pasar el mouse.
+3. Usa `clamp()` para tamaño de fuente responsivo y una variable para color principal.
+4. Prueba `color-mix()` combinando dos colores para el fondo.
+
+> 🔥 **Tip final:** Combina estas propiedades y observa cómo CSS te permite diseñar interfaces **dinámicas y profesionales** sin JavaScript.
+

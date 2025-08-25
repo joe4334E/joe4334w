@@ -1,0 +1,125 @@
+---
+title: "HTML: 010 - Web Hosting"
+slug: html-010
+description: Conceptos básicos de hosting y despliegue de proyectos web en internet.
+date: 2025-10-04
+image: hackthebox-driver-writeup.webp
+---
+
+import FixTheImageURL from '../../../components/mdxComponents/FixTheImageURL.astro';
+import Figure from '../../../components/mdxComponents/Figure.astro';
+import { components as MDXComponents } from '../../../components/mdxComponents';
+export const components = MDXComponents;
+
+# Web Hosting 🚀
+
+> ¡Hora de poner tu web en internet! 🌐 No sirve de nada tener un sitio genial en tu PC si nadie lo puede ver. Vamos a aprender **qué es hosting** y cómo subir tu proyecto a la web usando servicios modernos y gratuitos.
+
+<Figure  title='Hosting Web' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIpsYJQRceoTmXybxvnlo2UtrwuVeSPrEtkg&s" alt="Concepto de hosting" caption="Figura 1: Concepto de hosting" />
+
+---
+
+## Introducción al WEB HOSTING
+
+**Web Hosting** = espacio en internet donde tu sitio “vive” y cualquier persona puede visitarlo desde un navegador.
+
+Conceptos clave:
+
+- 🖥️ **Servidor web:** computadora que guarda tu web y responde a solicitudes.
+- 🌐 **Dominio:** la dirección que escribes en tu navegador (`misitio.com`).
+- 🗺️ **DNS:** traduce tu dominio a la dirección IP del servidor.
+- 💸 **Hosting gratuito vs pago:**
+  - Gratis: ideal para aprender o proyectos simples. Limitado en espacio y recursos.
+  - Pago: más control, rendimiento y dominio propio.
+
+`
+## Cómo subir tu WEB a INTERNET
+
+Ahora sí, ¡manos a la obra! Puedes usar **GitHub Pages, Netlify o Vercel** según tu proyecto.
+
+---
+
+### 1. **GitHub Pages** 🐱
+
+Perfecto para **proyectos estáticos** (solo HTML, CSS y JS).
+
+**Pasos básicos:**
+
+1. Crea un repositorio en GitHub.
+2. Sube tu proyecto (`index.html`, carpetas `css/`, `img/`, etc.).
+3. Ve a `Settings > Pages` y selecciona la rama principal.
+4. Espera unos minutos y accede a tu web:
+   `https://usuario.github.io/mi-sitio/`
+
+💡 **Tip:** Cada vez que actualices tu proyecto, solo haz `commit` y `push`. ¡GitHub Pages se encargará del resto! ✅
+
+---
+
+### 2. **Netlify** 🌊
+
+Genial para proyectos estáticos o con frameworks modernos.
+
+**Ventajas:**
+- Deploy automático desde Git.
+- SSL gratuito.
+- Dominio propio fácil de configurar.
+
+**Pasos básicos:**
+
+1. Crea cuenta en [Netlify](https://www.netlify.com/).
+2. Conecta tu repositorio de GitHub, GitLab o Bitbucket.
+3. Configura la rama a desplegar y la ruta de build (para proyectos estáticos `index.html` basta).
+4. Obtén tu URL pública: `https://mi-sitio.netlify.app/`
+
+![Figura 2: Netlify deploy](https://via.placeholder.com/1200x500.png?text=Netlify+Deploy)
+
+---
+
+### 3. **Vercel** ⚡
+
+Perfecto si trabajas con **React, Next.js, Vue o apps modernas**.
+
+**Ventajas:**
+- Deploy instantáneo.
+- Integración directa con Git.
+- SSL automático.
+
+**Pasos básicos:**
+
+1. Crea cuenta en [Vercel](https://vercel.com/).
+2. Importa tu proyecto desde GitHub, GitLab o Bitbucket.
+3. Configura la build y la ruta de publicación.
+4. Tu sitio estará disponible en algo como:
+   `https://mi-sitio.vercel.app/`
+
+---
+
+### 4. **Otras opciones**
+
+- **Firebase Hosting:** ideal para apps SPA y PWA.
+- **Surge.sh:** rápido y minimalista para proyectos estáticos.
+- **Amazon S3 + CloudFront:** opción profesional con CDN para proyectos grandes.
+
+---
+
+## Mini guía práctica: GitHub Pages 💻
+
+1. Crear repositorio nuevo `mi-sitio`.
+2. Subir proyecto (`index.html`, `css/`, `img/`).
+3. Habilitar GitHub Pages en `Settings > Pages > Branch main`.
+4. Esperar unos minutos y abrir la web:
+   `https://usuario.github.io/mi-sitio/`
+
+> 🔥 **Tip de pro:** Mantén siempre tu proyecto actualizado con commits frecuentes y no olvides probar que todo funciona antes de publicar.
+
+---
+
+## Resumen 📝
+
+- Hosting = poner tu web en internet.
+- Puedes usar **servicios gratuitos**: GitHub Pages, Netlify, Vercel.
+- **Opciones de pago**: AWS, DigitalOcean, Google Cloud.
+- Siempre respalda tu proyecto y actualízalo regularmente.
+
+![Figura 3: Deploy web](https://via.placeholder.com/1200x500.png?text=Deploy+Web+Exitoso)
+
