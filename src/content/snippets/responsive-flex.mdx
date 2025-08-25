@@ -1,0 +1,78 @@
+---
+title: responsive using flexbox
+slug: responsive-flexbox
+description: Learn how to create responsive layouts using Flexbox.
+image: ../images/snippets/flexbox-froggy.webp
+---
+import Coder from '../../components/mdxComponents/Coder.astro'
+
+## Creacion para el maquetado base con HTML5 y CSS 
+
+Para crear un maquetado base con HTML5 y CSS utilizando Flexbox, puedes seguir el siguiente ejemplo:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="styles.css">
+    <title>Titulo de la pagina</title>
+</head>
+<body>
+    <!-- Cabecera de la pagina -->
+    <header>
+        <h1>Responsive Flexbox</h1>
+    </header>
+    <!-- Contenido principal de la pagina -->
+    <main>
+        <section>
+            <h2>Section Title</h2>
+            <p>This is a sample paragraph to demonstrate the layout.</p>
+        </section>
+    </main>
+    <!-- Pie de pagina -->
+    <footer>
+        <p>&copy; 2024 Your Name</p>
+    </footer>   
+</body>
+</html> 
+```
+
+para el archivo CSS se utilizara el siguiente codigo:
+
+```css
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main {
+    flex: 1;
+}
+```
+
+### Salida del codigo
+
+<Coder />
+
+### Explicacion del codigo
+Para el HTML5 se ha utilizado las etiquetas semanticas como `<header>`, `<main>`, `<section>`, y `<footer>` para estructurar el contenido de la pagina de manera clara y organizada.
+Para el CSS, se ha aplicado Flexbox al cuerpo del documento para crear un diseño flexible y responsivo.
+Tomano en cuenta las siguientes propiedades:
+- `display: flex;` convierte el cuerpo en un contenedor flex.
+- `flex-direction: column;` organiza los elementos hijos en una columna.
+- `min-height: 100vh;` asegura que el cuerpo ocupe al menos la altura completa de la ventana.
+- `flex: 1;` en el elemento `<main>` permite que este crezca y ocupe el espacio disponible entre el encabezado y el pie de página
+### Conclusión
+
+Con este codigo, hemos creado una estructura básica de HTML5 con un encabezado, un área principal y un pie de página. 
+El CSS utiliza Flexbox para hacer que el cuerpo ocupe toda la altura de la ventana y que el área principal crezca para llenar el espacio disponible entre el encabezado y el pie de página.
+
+

@@ -21,9 +21,8 @@ const sortedPosts = allBlogPosts.sort(
         </h1>
         <p class='mb-4 text-gray-600 dark:text-white'>
             {
-                `I post my hackthebox writeups and other infoSec findings here.
-            In total, I've written ${sortedPosts.length} articles on my blog.
-            Use the search below to filter by title.`
+                `Aqui encontraras post de aprendizaje basico o cosas que a mi me interesa compartir. Tengo :  ${sortedPosts.length} articulos en mi blog.
+            usa el buscador para filtrar la busqueda.`
             }
         </p>
         <BlogPostWithSearch client:only='react' sortedPosts={sortedPosts} />

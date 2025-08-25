@@ -3,12 +3,26 @@
 const { src, alt, caption } = Astro.props;
 ---
 
+<style>
+  @keyframes gentleMove {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  .animate-image {
+    animation: gentleMove 4s ease-in-out infinite;
+  }
+</style>
+
 <figure class="my-6">
-    <img src={src} alt={alt} class="rounded shadow-md w-full" />
+    <img src={src} alt={alt} class="rounded shadow-md w-full animate-image" />
     {caption && (
         <figcaption class="mt-2 text-center text-gray-700 dark:text-gray-400">
             <h4 class="font-semibold text-lg">{caption}</h4>
         </figcaption>
     )}
 </figure>
-

@@ -41,8 +41,8 @@ const { title, description, ogImage } = Astro.props as Props;
             class='flex flex-col justify-center px-8 bg-gray-50 dark:bg-gray-900'
         >
             <slot />
-            <Footer />
         </main>
+            <Footer />
         <ScrollTopAndComment client:only='react' />
     </body>
 </html>
