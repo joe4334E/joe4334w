@@ -1,0 +1,315 @@
+---
+// Componente de Table of Contents con estilos del blog
+---
+
+<div 
+  id="table-of-contents" 
+  class="hidden lg:block lg:sticky lg:top-20 lg:w-80 lg:h-fit lg:ml-8"
+>
+  <div class="bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
+    <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4 flex items-center border-b border-gray-200 dark:border-gray-700 pb-3">
+      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      Tabla de Contenido
+    </h3>
+    
+    <nav id="toc-nav" class="relative">
+      <!-- Línea vertical -->
+      <div class="absolute left-4 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-gray-700"></div>
+      
+      <!-- Los headings se insertarán aquí dinámicamente -->
+    </nav>
+  </div>
+</div>
+
+<script>
+  // Función para generar slugs compatibles con Astro
+  function generateSlug(text) {
+    if (!text) return '';
+    return text
+      .toLowerCase()
+      .replace(/[áàäâ]/g, 'a')
+      .replace(/[éèëê]/g, 'e')
+      .replace(/[íìïî]/g, 'i')
+      .replace(/[óòöô]/g, 'o')
+      .replace(/[úùüû]/g, 'u')
+      .replace(/[ñ]/g, 'n')
+      .replace(/[^\w\s-]/g, '') // Remove special chars except spaces and hyphens
+      .replace(/[\s_-]+/g, '-') // Replace spaces, underscores, hyphens with single hyphen
+      .replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+  }
+
+  // Función para extraer headings del contenido
+  function extractHeadings() {
+    const content = document.querySelector('.prose');
+    if (!content) return [];
+
+    const headings = content.querySelectorAll('h2, h3, h4, h5, h6');
+    const tocItems = [];
+
+    headings.forEach((heading, index) => {
+      // Generar ID si no existe
+      if (!heading.id) {
+        heading.id = generateSlug(heading.textContent);
+      }
+
+      tocItems.push({
+        id: heading.id,
+        text: heading.textContent,
+        level: parseInt(heading.tagName.charAt(1)),
+        element: heading
+      });
+    });
+
+    return tocItems;
+  }
+
+  // Función para renderizar el TOC con jerarquía
+  function renderTOC() {
+    const tocNav = document.getElementById('toc-nav');
+    if (!tocNav) return;
+    
+    const headings = extractHeadings();
+
+    if (headings.length === 0) {
+      tocNav.innerHTML = '<p class="text-gray-500 dark:text-gray-400 text-sm ml-8">No hay secciones</p>';
+      return;
+    }
+
+    const tocHTML = headings.map((heading, index) => {
+      // Configurar márgenes y tamaños según nivel
+      const marginLeft = heading.level === 2 ? 'ml-8' : 
+                         heading.level === 3 ? 'ml-12' : 
+                         heading.level === 4 ? 'ml-16' : 
+                         heading.level === 5 ? 'ml-20' : 'ml-24';
+      
+      const textSize = heading.level === 2 ? 'text-sm' : 
+                       heading.level === 3 ? 'text-xs' : 
+                       heading.level === 4 ? 'text-xs' : 'text-xs';
+      
+      const fontWeight = heading.level === 2 ? 'font-semibold' : 'font-normal';
+      const iconSize = heading.level === 2 ? 'w-2 h-2' : 'w-1.5 h-1.5';
+      
+      // Numeración automática para H2
+      const h2Number = heading.level === 2 ? 
+        headings.filter(h => h.level === 2).indexOf(heading) + 1 + '.' : '';
+      
+      return `
+        <div class="toc-item relative flex items-center py-2 group ${marginLeft}">
+          <!-- Círculo del indicador -->
+          <div class="absolute left-0 w-8 h-8 flex items-center justify-center">
+            <div class="toc-bullet ${iconSize} rounded-full bg-gray-300 dark:bg-gray-600 group-hover:bg-blue-500 dark:group-hover:bg-blue-400 transition-colors duration-200 ${heading.level === 2 ? 'ring-2 ring-gray-100 dark:ring-gray-800' : ''}"></div>
+          </div>
+          
+          <!-- Enlace del heading -->
+          <a 
+            href="#${heading.id}" 
+            class="toc-link flex-1 py-1 px-3 rounded text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200 ${textSize} ${fontWeight}"
+            data-target="${heading.id}"
+            data-level="${heading.level}"
+          >
+            <span class="text-gray-400 dark:text-gray-500 mr-2">${h2Number}</span>
+            ${heading.text}
+          </a>
+          
+          <!-- Línea conectora hacia abajo -->
+          ${index < headings.length - 1 ? '<div class="absolute left-4 w-0.5 bg-gray-200 dark:bg-gray-700" style="top: 2rem;"></div>' : ''}
+        </div>
+      `;
+    }).join('');
+
+    tocNav.innerHTML = tocHTML;
+  }
+
+  // Función para implementar scroll spy con colores del blog
+  function setupScrollSpy() {
+    const headings = extractHeadings();
+    const tocLinks = document.querySelectorAll('.toc-link');
+
+    if (headings.length === 0 || tocLinks.length === 0) return;
+
+    // Observer para detectar qué heading está visible
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Remover clase activa de todos los links y bullets
+            tocLinks.forEach(link => {
+              link.classList.remove(
+                'text-blue-600', 'dark:text-blue-400', 'font-bold', 
+                'bg-blue-50', 'dark:bg-blue-900/30', 'border-l-2', 'border-blue-500'
+              );
+              
+              const bullet = link.closest('.toc-item').querySelector('.toc-bullet');
+              if (bullet) {
+                bullet.classList.remove('bg-blue-500', 'dark:bg-blue-400', 'ring-blue-300', 'dark:ring-blue-600');
+                bullet.classList.add('bg-gray-300', 'dark:bg-gray-600');
+              }
+            });
+
+            // Añadir clase activa al link correspondiente
+            const activeLink = document.querySelector(`.toc-link[data-target="${entry.target.id}"]`);
+            if (activeLink) {
+              activeLink.classList.add(
+                'text-blue-600', 'dark:text-blue-400', 'font-bold', 
+                'bg-blue-50', 'dark:bg-blue-900/30', 'border-l-2', 'border-blue-500'
+              );
+              
+              const activeBullet = activeLink.closest('.toc-item').querySelector('.toc-bullet');
+              if (activeBullet) {
+                activeBullet.classList.remove('bg-gray-300', 'dark:bg-gray-600');
+                activeBullet.classList.add('bg-blue-500', 'dark:bg-blue-400', 'ring-blue-300', 'dark:ring-blue-600');
+              }
+            }
+          }
+        });
+      },
+      {
+        rootMargin: '-15% 0px -75% 0px' // Considerar visible cuando está en el 15% superior
+      }
+    );
+
+    // Observar todos los headings
+    headings.forEach(heading => {
+      observer.observe(heading.element);
+    });
+  }
+
+  // Función para smooth scrolling con offset
+  function setupSmoothScrolling() {
+    const tocLinks = document.querySelectorAll('.toc-link');
+    
+    tocLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = link.getAttribute('data-target');
+        if (!targetId) return;
+        
+        const targetElement = document.getElementById(targetId);
+        
+        if (targetElement) {
+          const offset = 80; // Offset para el header sticky
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  }
+
+  // Inicializar todo cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      renderTOC();
+      setupScrollSpy();
+      setupSmoothScrolling();
+    }, 100);
+  });
+
+  // Re-render si el contenido cambia
+  document.addEventListener('astro:page-load', () => {
+    setTimeout(() => {
+      renderTOC();
+      setupScrollSpy();
+      setupSmoothScrolling();
+    }, 100);
+  });
+</script>
+
+<style>
+  /* Estilos personalizados para el TOC */
+  .toc-item {
+    position: relative;
+  }
+  
+  .toc-bullet {
+    transition: all 0.3s ease;
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.1);
+  }
+  
+  .toc-link {
+    transition: all 0.2s ease;
+    border-left: 2px solid transparent;
+  }
+  
+  .toc-link:hover {
+    transform: translateX(4px);
+    border-left-color: #3b82f6;
+  }
+  
+  .toc-link:hover .toc-bullet {
+    transform: scale(1.2);
+  }
+  
+  /* Animación de entrada escalonada */
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .toc-item {
+    animation: slideInLeft 0.4s ease forwards;
+  }
+  
+  .toc-item:nth-child(1) { animation-delay: 0.05s; }
+  .toc-item:nth-child(2) { animation-delay: 0.1s; }
+  .toc-item:nth-child(3) { animation-delay: 0.15s; }
+  .toc-item:nth-child(4) { animation-delay: 0.2s; }
+  .toc-item:nth-child(5) { animation-delay: 0.25s; }
+  .toc-item:nth-child(6) { animation-delay: 0.3s; }
+  .toc-item:nth-child(7) { animation-delay: 0.35s; }
+  .toc-item:nth-child(8) { animation-delay: 0.4s; }
+  
+  /* Línea conectora animada */
+  .toc-item .absolute:not(.toc-bullet) {
+    animation: growLine 0.3s ease forwards;
+    animation-delay: inherit;
+  }
+  
+  @keyframes growLine {
+    from {
+      height: 0;
+    }
+    to {
+      height: 2rem;
+    }
+  }
+  
+  /* Efecto de pulso para elementos activos */
+  .toc-link.text-blue-600 {
+    position: relative;
+  }
+  
+  .toc-link.text-blue-600::before {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #3b82f6, #2563eb);
+    border-radius: 0 2px 2px 0;
+    animation: pulse 2s infinite;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+</style>

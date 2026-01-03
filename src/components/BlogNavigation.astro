@@ -1,0 +1,63 @@
+---
+interface Props {
+  currentSlug: string;
+  posts: Array<{
+    slug: string;
+    data: {
+      title: string;
+    };
+  }>;
+}
+
+const { currentSlug, posts } = Astro.props;
+
+// Función para extraer la carpeta del slug
+function getFolderFromSlug(slug: string): string {
+  const parts = slug.split('/');
+  return parts.length > 1 ? parts[0] : '';
+}
+
+// Obtener la carpeta del post actual
+const currentFolder = getFolderFromSlug(currentSlug);
+
+// Filtrar posts de la misma carpeta y ordenarlos alfabéticamente
+const sameFolderPosts = posts
+  .filter(post => getFolderFromSlug(post.slug) === currentFolder)
+  .sort((a, b) => a.slug.localeCompare(b.slug));
+
+// Encontrar el índice del post actual
+const currentIndex = sameFolderPosts.findIndex(post => post.slug === currentSlug);
+
+// Obtener posts anterior y siguiente
+const prevPost = currentIndex > 0 ? sameFolderPosts[currentIndex - 1] : null;
+const nextPost = currentIndex < sameFolderPosts.length - 1 ? sameFolderPosts[currentIndex + 1] : null;
+---
+
+<!-- Contenedor principal para ambos botones -->
+<div class="flex justify-between items-center w-full max-w-2xl mx-auto mt-8 mb-8 gap-4">
+  
+  {prevPost && (
+    <a 
+      href={`/blog/${prevPost.slug}`}
+      class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors flex-1"
+    >
+      <svg class="w-4 h-4 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+      <span class="truncate">{prevPost.data.title}</span>
+    </a>
+  )}
+  
+  {nextPost && (
+    <a 
+      href={`/blog/${nextPost.slug}`}
+      class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors flex-1 justify-end text-right"
+    >
+      <span class="truncate mr-2">{nextPost.data.title}</span>
+      <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </a>
+  )}
+  
+</div>
