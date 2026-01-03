@@ -34,30 +34,106 @@ const nextPost = currentIndex < sameFolderPosts.length - 1 ? sameFolderPosts[cur
 ---
 
 <!-- Contenedor principal para ambos botones -->
-<div class="flex justify-between items-center w-full max-w-2xl mx-auto mt-8 mb-8 gap-4">
+<div class="flex justify-between items-center w-full max-w-2xl mx-auto mt-8 mb-8 gap-6">
   
   {prevPost && (
-    <a 
-      href={`/blog/${prevPost.slug}`}
-      class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors flex-1"
-    >
-      <svg class="w-4 h-4 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-      </svg>
-      <span class="truncate">{prevPost.data.title}</span>
-    </a>
+    <div class="relative group">
+      <!-- Línea conectora -->
+      <div class="absolute -top-4 left-4 w-0.5 h-4 bg-gray-200 dark:bg-gray-700 transition-colors duration-300"></div>
+      
+      <!-- Círculo indicador -->
+      <div class="absolute -top-6 left-2.5 w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 group-hover:bg-blue-500 dark:group-hover:bg-blue-400 transition-all duration-300 ring-2 ring-white dark:ring-gray-900 shadow-sm"></div>
+      
+      <a 
+        href={`/blog/${prevPost.slug}`}
+        class="flex items-center px-6 py-3 text-sm font-medium bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 flex-1 group/link transform hover:scale-105 hover:shadow-lg"
+      >
+        <div class="flex items-center flex-1">
+          <!-- Icono con animación -->
+          <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50 transition-all duration-300 mr-3">
+            <svg class="w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+          </div>
+          
+          <div class="flex flex-col items-start">
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide mb-1">Anterior</span>
+            <span class="text-gray-700 dark:text-gray-300 font-medium group-hover/link:text-blue-600 dark:group-hover/link:text-blue-400 transition-colors duration-300 truncate">{prevPost.data.title}</span>
+          </div>
+        </div>
+      </a>
+    </div>
   )}
   
   {nextPost && (
-    <a 
-      href={`/blog/${nextPost.slug}`}
-      class="flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 dark:bg-gray-800 dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700 transition-colors flex-1 justify-end text-right"
-    >
-      <span class="truncate mr-2">{nextPost.data.title}</span>
-      <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-      </svg>
-    </a>
+    <div class="relative group">
+      <!-- Línea conectora -->
+      <div class="absolute -top-4 right-4 w-0.5 h-4 bg-gray-200 dark:bg-gray-700 transition-colors duration-300"></div>
+      
+      <!-- Círculo indicador -->
+      <div class="absolute -top-6 right-2.5 w-3 h-3 rounded-full bg-gray-300 dark:bg-gray-600 group-hover:bg-blue-500 dark:group-hover:bg-blue-400 transition-all duration-300 ring-2 ring-white dark:ring-gray-900 shadow-sm"></div>
+      
+      <a 
+        href={`/blog/${nextPost.slug}`}
+        class="flex items-center px-6 py-3 text-sm font-medium bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 flex-1 group/link transform hover:scale-105 hover:shadow-lg"
+      >
+        <div class="flex items-center flex-1 justify-end">
+          <div class="flex flex-col items-end mr-3">
+            <span class="text-xs text-gray-500 dark:text-gray-400 font-medium uppercase tracking-wide mb-1">Siguiente</span>
+            <span class="text-gray-700 dark:text-gray-300 font-medium group-hover/link:text-blue-600 dark:group-hover/link:text-blue-400 transition-colors duration-300 truncate">{nextPost.data.title}</span>
+          </div>
+          
+          <!-- Icono con animación -->
+          <div class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-200 dark:bg-gray-700 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50 transition-all duration-300">
+            <svg class="w-4 h-4 text-gray-600 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </div>
+        </div>
+      </a>
+    </div>
   )}
   
 </div>
+
+<!-- Estilos adicionales -->
+<style>
+  /* Animación de entrada */
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .relative.group {
+    animation: slideUp 0.5s ease-out;
+  }
+  
+  .relative.group:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  
+  /* Efecto hover mejorado */
+  .group:hover .relative.group\:hover\:scale-105 {
+    transform: scale(1.02);
+  }
+  
+  /* Pulsación en círculos indicadores */
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+    }
+  }
+  
+  .group:hover .group-hover\:bg-blue-500 {
+    animation: pulse 2s infinite;
+  }
+</style>
