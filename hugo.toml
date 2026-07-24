@@ -1,0 +1,106 @@
+baseURL = 'https://joe4334E.github.io/'
+locale = 'es'
+title = 'Blog de Joe'
+theme = 'LoveIt'
+
+[params]
+  defaultTheme = "auto"
+  dateFormat = "2006-01-02"
+
+  [params.author]
+    name = "Joe"
+    email = ""
+    link = ""
+
+  [params.header]
+    desktopMode = "fixed"
+    mobileMode = "auto"
+    [params.header.title]
+      logo = ""
+      name = "Blog de Joe"
+      pre = ""
+      post = ""
+      typeit = false
+
+  [params.footer]
+    enable = true
+    hugo = true
+    copyright = true
+    author = true
+    since = 2026
+
+  [params.home.profile]
+    enable = true
+    avatarURL = ""
+    title = "Blog de Joe"
+    subtitle = "Bienvenido a mi blog"
+    typeit = false
+    social = true
+
+  [params.home.posts]
+    enable = true
+    paginate = 6
+
+  [params.search]
+    enable = true
+    type = "lunr"
+
+  [params.page.toc]
+    enable = true
+    keepStatic = false
+    auto = true
+
+  [params.page.code]
+    copy = true
+    maxShownLines = 50
+
+  [params.page.share]
+    enable = true
+
+  [params.page.comment]
+    enable = false
+
+  [params.social]
+    GitHub = "joe4334E"
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = false
+    noClasses = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5
+
+[menu]
+  [[menu.main]]
+    weight = 1
+    identifier = "posts"
+    name = "Artículos"
+    url = "/posts/"
+  [[menu.main]]
+    weight = 2
+    identifier = "tags"
+    name = "Etiquetas"
+    url = "/tags/"
+  [[menu.main]]
+    weight = 3
+    identifier = "categories"
+    name = "Categorías"
+    url = "/categories/"
+  [[menu.main]]
+    weight = 4
+    identifier = "about"
+    name = "Acerca de"
+    url = "/about/"
