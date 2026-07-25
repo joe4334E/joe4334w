@@ -3,6 +3,7 @@ title: "Guía de Markdown"
 date: 2026-07-23
 draft: false
 description: "Una referencia rápida de la sintaxis Markdown."
+featuredImage: "/images/markdown-terminal.jpg"
 tags: ["markdown", "tutorial"]
 categories: ["Documentación"]
 ---

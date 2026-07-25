@@ -1,4 +1,4 @@
-baseURL = 'https://joe4334E.github.io/'
+baseURL = '/'
 locale = 'es'
 title = 'Blog de Joe'
 theme = 'LoveIt'
@@ -8,7 +8,7 @@ theme = 'LoveIt'
   dateFormat = "2006-01-02"
 
   [params.author]
-    name = "Joe"
+    name = "Joe4334w"
     email = ""
     link = ""
 
@@ -31,7 +31,7 @@ theme = 'LoveIt'
 
   [params.home.profile]
     enable = true
-    avatarURL = ""
+    avatarURL = "/image.jpg"
     title = "Blog de Joe"
     subtitle = "Bienvenido a mi blog"
     typeit = false
@@ -62,6 +62,7 @@ theme = 'LoveIt'
 
   [params.social]
     GitHub = "joe4334E"
+    LinkedIn = "efrain-colque"
 
 [markup]
   [markup.highlight]

@@ -20,3 +20,5 @@ node_modules/
 
 # SCRIPTS
 new-post.sh
+.vercel
+.env*

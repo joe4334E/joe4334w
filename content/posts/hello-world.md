@@ -3,6 +3,7 @@ title: "Bienvenido a Mi Blog"
 date: 2026-07-24
 draft: false
 description: "Este es mi primer artículo usando Hugo con el tema LoveIt."
+featuredImage: "/images/blog-space.jpg"
 tags: ["blog", "hugo"]
 categories: ["Introducción"]
 ---
