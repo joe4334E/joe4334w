@@ -1,0 +1,28 @@
+{{- $mode := .Get 0 -}}
+{{- $showPrev := or (eq $mode "") (eq $mode "prev") -}}
+{{- $showNext := or (eq $mode "") (eq $mode "next") -}}
+
+{{- $prevPage := false -}}
+{{- if and $showPrev .Page.Params.prev -}}
+    {{- $prevPage = $.Site.GetPage .Page.Params.prev -}}
+{{- end -}}
+{{- $nextPage := false -}}
+{{- if and $showNext .Page.Params.next -}}
+    {{- $nextPage = $.Site.GetPage .Page.Params.next -}}
+{{- end -}}
+
+{{- $prevLabel := .Page.Params.prevLevel | default "" -}}
+{{- $nextLabel := .Page.Params.nextLevel | default "" -}}
+
+<div class="post-serie-nav">
+    {{- with $prevPage -}}
+        {{- $l := $prevLabel -}}
+        {{- if not $l -}}{{- $l = .Params.level | default .Title -}}{{- end -}}
+        <span class="serie-prev"><strong>Nivel anterior:</strong> <a href="{{ .RelPermalink }}">{{ $l }}</a></span>
+    {{- end -}}
+    {{- with $nextPage -}}
+        {{- $l := $nextLabel -}}
+        {{- if not $l -}}{{- $l = .Params.level | default .Title -}}{{- end -}}
+        <span class="serie-next"><strong>Siguiente nivel:</strong> <a href="{{ .RelPermalink }}">{{ $l }}</a></span>
+    {{- end -}}
+</div>
